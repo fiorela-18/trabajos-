@@ -1,0 +1,147 @@
+body{
+    background-color: beige;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0%;
+}
+header {
+    background-color: #3f684a; /* Un color verde oscuro, ideal para la temática */
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+hero{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 3rem; 
+    align-items: center; 
+    padding: 6rem 2rem;
+    background-color: var(--color-fondo-claro);
+    max-width: 1200px;
+    margin: 0 auto; 
+}
+hero-banner {
+    width: 100%;
+    margin-top: 0; /* Asegura que no haya espacio entre la barra de navegación y el banner */
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    padding: 5rem 2rem;
+    background-color: #f7f7f7;
+}
+
+.hero-banner img {
+    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 500px; /* Opcional: limita la altura máxima de la imagen */
+    display: block; /* Elimina el pequeño espacio que algunos navegadores agregan debajo de las imágenes */
+}
+
+/* Estilos para el contenido principal (texto y formulario) */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 5rem 2rem;
+    background-color: var(--color-fondo-claro);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para el texto descriptivo */
+.contenido-hero {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contenido-hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-principal);
+    margin-bottom: 0.5rem;
+}
+
+.contenido-hero p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+/* Estilos para el formulario */
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-principal);
+}
+.form-section input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-section button {
+    width: 100%;
+    background-color: var(--color-resalte);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #ff6a1a;
+}
+
+.navegacion {
+    display: flex;
+    justify-content: space-between; /* Coloca el logo a la izquierda y el menú a la derecha */
+    align-items: center; /* Centra el logo y el menú verticalmente */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    background-color: var(--color-principal);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Estilos para la imagen del logo */
+.navegacion .logo img {
+    height: 50px;
+    width: auto;
+}
+
+/* Estilos para la lista de enlaces */
+.navegacion ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Estilos para los enlaces */
+.navegacion a {
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none; /* Propiedad que faltaba */
+    transition: color 0.3s ease;
+}
+
+.navegacion a:hover {
+    color: var(--color-resalte);
+}
