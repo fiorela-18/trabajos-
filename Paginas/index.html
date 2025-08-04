@@ -1,98 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!--cabeza de pagina -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mi landingpage</title>
     <link rel="stylesheet" href="style.css">
     
-</head>
-<body>
-    <header>
-    <nav class="navegacion">
-        <a href="#inicio" class="logo">
-            <img src="img/logo-animal.jpeg" alt="logo de La Colina de la Esperanza">
-        </a>
-        <ul>
-            <li> <a href="#inicio">Inicio</a></li>
-            <li> <a href="#animales">Animales</a></li>
-            <li> <a href="#ayuda">Ayuda</a></li> 
-        </ul>
-    </nav>
-    </header>
-    <main>
+</head> 
+<body>   <!--cuerpo de pagina -->
+    <header> <!--encabezado, contine informacion introductoria o de navegacion-->
 
-        <section class="hero-banner">
-    <img src="img/animales.jpeg" alt="animales">
+            <!--NAVEGACION-->
+
+    <nav class="navegacion">
+    <a href="#inicio" class="logo">
+        <img src="img/logo1.png" class="imagen-transparente" alt="Dibujo del logo">
+    </a>
+    <ul>
+        <li> <a href="#inicio">Inicio</a></li>
+        <li> <a href="#animales">Animales</a></li>
+        <li> <a href="#ayuda">Ayuda</a></li> 
+    </ul>
+</nav>
+    </header>
+<!-- ============================================
+     SECCIÓN HERO CON IMAGEN Y DESCRIPCIÓN
+     ============================================ -->
+<section class="hero-banner">  <!--parte principal de una pagina-->
+    <img src="img/fondo.png" alt="animales del refugio">
+    
+    <!-- Texto encima de la imagen -->
+   
 </section>
 
-<section class="main-content">
-    <div class="contenido-hero">
-        <p>Donde cada historia de rescate encuentra un nuevo comienzo. Somos un refugio dedicado a dar una
-            segunda oportunidad conectandolos con una familias que busacan el amor mas puro
-        </p>
-    </div>
+<!-- ============================================
+     SECCIÓN DE FORMULARIO DE SUSCRIPCIÓN
+     ============================================ -->
+<section class="main-content" id="inicio">
     <div class="form-section">
         <h2>Únete a la Causa</h2>
         <p>Sé el primero en conocer a nuestros animales listos para adopción y las historias de éxito. Suscríbete para recibir nuestras novedades.</p>
-        <form action="#" method="post">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" required>
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" required>
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" required>
-            <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" name="email" required>
-            
-            <button type="submit">Suscribirme</button>
-        </form>
+
+        <div id="form-content">
+            <form id="formulario-unete" action="#" method="post">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="apellido">Apellidos</label>
+                <input type="text" id="apellido" name="apellido" required>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" required>
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">Suscribirme</button>
+            </form>
+        </div>
+
+        <div class="mensaje-exito" id="mensajeExito">
+            <div class="mensaje-contenido">
+                <i class="fas fa-check-circle"></i>
+                <h3>¡Gracias por unirte!</h3>
+                <p>Tu suscripción ha sido confirmada. Te mantendremos informado sobre nuestras actividades y eventos.</p>
+            </div>
+        </div>
     </div>
 </section>
-        <section id="animales">
-            <h2>Nuestros animales</h2>
-            <div class="division-mascota">
-                <h3>Max</h3>
-                <img src="img/max.jpeg" alt="foto de max">
-                <P>Max es un cahorro de 5 meses de raza siveriano, muy jugueton y lleno de energia, ideal para
-                    familias activas.
-                </P>
-            </div>
-        
-             <div class="division.mascota">
-                <h3>Rocki</h3>
-                <img src="img/rocki.jpg" alt="foto de rocki">
-                <p>Rocki es un perro de dos años de color chocolate, es un perro muy valiente y divertido, ideal para 
-                    aquellas familias que van cada fin de semana al campo.
-                </p>
-            </div>
-            <div class="animal-card">
-        <img src="img/simba.jpg" alt="Foto Simba">
-        <h3>Simba</h3>
-        <p>Simba es un gato naranja de 3 años, tranquilo y majestuoso. Le gusta pasar la tarde tomando el sol y busca un hogar sin mucho ruido.</p>
-    </div>
 
-        </section>
-        <section id="ayuda">
-            <h2>Como puedes ayudar</h2>
-            <p>La adopcion no es la unica forma de cambiar una vida, con tu apoyo podemos seguir rescatando mas vidas</p>
-        <div class="ayuda-opcion">
-        <h3>Haz una Donación</h3>
-        <p>Tu contribución financiera, no importa qué tan pequeña sea, nos ayuda a cubrir los costos de alimento, vacunas y atención veterinaria de emergencia. Cada euro es un paso más hacia la recuperación de un animal.</p>
-        <a href="#" class="button">Donar Ahora</a>
+<section id="animales">
+    <h2>Nuestros animales</h2>
+    
+    <!-- Contenedor que agrupa todas las mascotas -->
+    <div class="contenedor-animales">
+        
+        <!-- Tarjeta 1 -->
+        <div class="animal-card">
+            <img src="img/max.jpeg" alt="foto de max">
+            <h3>Max</h3>
+            <p>Max es un cachorro de 5 meses de raza siberiano, muy juguetón y lleno de energía, ideal para familias activas.</p>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="animal-card">
+            <img src="img/rocki.jpg" alt="foto de rocki">
+            <h3>Rocki</h3>
+            <p>Rocki es un perro de dos años de color chocolate. Muy valiente y divertido, ideal para familias que van al campo.</p>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="animal-card">
+            <img src="img/simba.jpg" alt="foto de simba">
+            <h3>Simba</h3>
+            <p>Simba es un gato naranja de 3 años, tranquilo y majestuoso. Le gusta tomar el sol y busca un hogar sin mucho ruido.</p>
+        </div>
+
+    </div>
+</section>
+       <section id="ayuda">
+  <h2>Como puedes ayudar</h2>
+  <p>La adopcion no es la unica forma de cambiar una vida, con tu apoyo podemos seguir rescatando mas vidas</p>
+
+  <div class="opciones-contenedor">
+
+    <div class="ayuda-opcion">
+      <div class="ayuda-imagen">
+        <img src="img/donacion.png" alt="Persona donando a animales">
+      </div>
+      <h3>Haz una Donación</h3>
+      <p>Tu contribución financiera, no importa qué tan pequeña sea, nos ayuda a cubrir los costos de alimento, vacunas y atención veterinaria de emergencia. Cada euro es un paso más hacia la recuperación de un animal.</p>
+      <a href="#" class="button">Donar Ahora</a>
     </div>
 
     <div class="ayuda-opcion">
-        <h3>Sé Voluntario</h3>
-        <p>Si tienes tiempo libre y ganas de ayudar, únete a nuestro equipo. Puedes pasear a los perros, jugar con los gatos, ayudar en la limpieza o participar en nuestros eventos de adopción. ¡Necesitamos tus manos!</p>
-        <a href="#" class="button">Únete al Equipo</a>
+      <div class="ayuda-imagen">
+        <img src="img/voluntario.png" alt="Persona siendo voluntaria con animales">
+      </div>
+      <h3>Sé Voluntario</h3>
+      <p>Si tienes tiempo libre y ganas de ayudar, únete a nuestro equipo. Puedes pasear a los perros, jugar con los gatos, ayudar en la limpieza o participar en nuestros eventos de adopción. ¡Necesitamos tus manos!</p>
+      <a href="#" class="button">Únete al Equipo</a>
     </div>
 
-        </section>
+  </div>
+</section>
     </main>
      <footer>
         <p>&copy; 2025 La Colina de la Esperanza. Todos los derechos reservados.</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,147 +1,466 @@
-body{
-    background-color: beige;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 0%;
+* {
+    margin: 0; /* Elimina márgenes predeterminados de todos los elementos */
+    padding: 0; /* Elimina rellenos predeterminados de todos los elementos */
+    box-sizing: border-box; /* Hace que el padding y border se incluyan dentro del ancho y alto del elemento */
 }
+
+html {
+    height: 100%;
+    /* Asegura que el elemento raíz ocupe toda la altura del viewport (pantalla visible del navegador) */
+}
+
+body {
+    background-color:hsl(323, 34%, 72%); /* Color de fondo claro grisáceo para toda la página */
+    width: 100%; /* Ancho completo del body */
+    margin: 0; /* Elimina cualquier margen por defecto */
+    padding: 0; /* Elimina cualquier relleno por defecto */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal si algún contenido se sale */
+    box-sizing: border-box; /* Incluye borde y relleno dentro del ancho y alto del body */
+
+    /* Propiedades de Flexbox para empujar el pie de página */
+    display: flex; /* Convierte el body en un contenedor flex */
+    flex-direction: column; /* Organiza los elementos hijos en columna (de arriba hacia abajo) */
+    min-height: 100vh; /* La altura mínima del body será igual a la altura de la pantalla */
+}
+
+/* ===================================================
+   ENCABEZADO PRINCIPAL (HEADER)
+=================================================== */
 header {
-    background-color: #3f684a; /* Un color verde oscuro, ideal para la temática */
-    padding: 1.5rem 2rem;
+    background-color: hsl(0, 42%, 64%); /* El fondo del body */
+    padding: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-hero{
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 3rem; 
-    align-items: center; 
-    padding: 6rem 2rem;
-    background-color: var(--color-fondo-claro);
-    max-width: 1200px;
-    margin: 0 auto; 
-}
-hero-banner {
+.hero-banner {
+    position: relative; /* Clave para posicionar el texto sobre la imagen */
     width: 100%;
-    margin-top: 0; /* Asegura que no haya espacio entre la barra de navegación y el banner */
-}
-.main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-    padding: 5rem 2rem;
-    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-banner img {
-    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    max-height: 500px; /* Opcional: limita la altura máxima de la imagen */
-    display: block; /* Elimina el pequeño espacio que algunos navegadores agregan debajo de las imágenes */
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* Contenido encima de la imagen */
+.contenido-hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    padding: 0 20px;
+    max-width: 800px;
+    line-height: 1.5;
 }
 
-/* Estilos para el contenido principal (texto y formulario) */
+/* =========================================
+   SECCIÓN PRINCIPAL
+   ========================================= */
 .main-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 2.5rem;
     align-items: center;
     padding: 5rem 2rem;
-    background-color: var(--color-fondo-claro);
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Estilos para el texto descriptivo */
-.contenido-hero {
-    flex: 1;
-    min-width: 300px;
-}
-
-.contenido-hero h1 {
-    font-size: 2.5rem;
-    color: var(--color-principal);
-    margin-bottom: 0.5rem;
-}
-
-.contenido-hero p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-/* Estilos para el formulario */
-.form-section {
-    flex: 1;
-    min-width: 300px;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-
-.form-section h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--color-principal);
-}
-.form-section input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.form-section button {
-    width: 100%;
-    background-color: var(--color-resalte);
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form-section button:hover {
-    background-color: #ff6a1a;
-}
-
+/* ============================================
+   CONTENEDOR PRINCIPAL DE LA NAVEGACIÓN
+   ============================================ */
 .navegacion {
-    display: flex;
-    justify-content: space-between; /* Coloca el logo a la izquierda y el menú a la derecha */
-    align-items: center; /* Centra el logo y el menú verticalmente */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    background-color: var(--color-principal);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex; /* Usa Flexbox para alinear los elementos en una sola línea horizontal */
+    justify-content: space-between; /* Coloca los elementos separados, uno a la izquierda y otro a la derecha */
+    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+    width: 100%; /* Ocupa el 100% del ancho disponible del contenedor padre (normalmente el body) */
+    padding: 15px 20px; /* Añade espacio interno: 15px arriba/abajo y 20px izquierda/derecha */
+    background-color: #551A8B; /* Color de fondo morado oscuro para la barra de navegación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aplica una sombra suave para dar un efecto de profundidad */
 }
 
-/* Estilos para la imagen del logo */
+
 .navegacion .logo img {
-    height: 50px;
-    width: auto;
+    width: auto; /* Deja que el ancho se ajuste automáticamente según la proporción original de la imagen */
+    height: 75px; /* Establece una altura fija de 75 píxeles para la imagen */
+    object-fit: contain; /* Asegura que la imagen se escale sin recortarse, manteniendo su relación de aspecto */
+    mix-blend-mode: screen; /* Aplica un efecto de mezcla que aclara la imagen fusionándola con el fondo */
 }
 
-/* Estilos para la lista de enlaces */
+.imagen-transparente {
+    mix-blend-mode: normal; /* Restaura el modo de mezcla por defecto para que se muestre la imagen sin efectos */
+}
+
 .navegacion ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.5rem;
+    list-style: none; /* Quita los puntos de lista predeterminados */
+    display: flex; /* Muestra los elementos en fila horizontal */
+    gap: 30px; /* Espacio de 30px entre cada ítem de la lista */
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el relleno por defecto */
 }
 
-/* Estilos para los enlaces */
-.navegacion a {
-    color: white;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-decoration: none; /* Propiedad que faltaba */
-    transition: color 0.3s ease;
+.navegacion ul li a {
+    position: relative; /* Permite posicionar elementos hijos con respecto a este */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: #ffffff; /* Color del texto en blanco */
+    font-weight: 700; /* Aplica un grosor fuerte a la fuente (negrita) */
+    font-size: 1.1rem; /* Tamaño del texto ligeramente mayor al normal */
+    letter-spacing: 1.5px; /* Espaciado entre letras para mayor claridad */
+    text-transform: uppercase; /* Convierte todo el texto a mayúsculas */
+    padding-bottom: 5px; /* Espacio debajo del texto, útil para efectos tipo subrayado animado */
+    transition: all 0.3s ease; /* Suaviza cualquier cambio de estilo en 0.3 segundos */
+
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Da profundidad al texto con una sombra suave oscura */
 }
 
-.navegacion a:hover {
-    color: var(--color-resalte);
+/* Agrega una línea decorativa debajo de cada enlace al pasar el mouse */
+.navegacion ul li a::after {
+    content: ''; /* Crea un contenido vacío para mostrar como línea decorativa */
+    position: absolute; /* Posiciona absolutamente dentro del enlace */
+    left: 0; /* Comienza desde la izquierda */
+    bottom: 0; /* Posición en la parte inferior del enlace */
+    width: 0%; /* Inicia con ancho 0% para que la línea no se vea inicialmente */
+    height: 2px; /* Grosor de la línea */
+    background-color: #fff; /* Color blanco para la línea */
+    transition: width 0.3s ease-in-out; /* Animación suave al cambiar el ancho */
+}
+
+/* Estilos cuando el mouse pasa por encima del enlace */
+.navegacion ul li a:hover {
+    color: #ffd700; /* Cambia el color del texto a dorado */
+    background: rgba(255, 255, 255, 0.2); /* Agrega un fondo semitransparente */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del enlace */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Agrega sombra para efecto de elevación */
+}
+
+/* Estilo para mostrar la línea completa al pasar el mouse */
+.navegacion ul li a:hover::after {
+    width: 100%; /* Extiende la línea a lo largo del enlace al hacer hover */
+}
+
+/* =======================
+   CONTENEDOR DEL FORMULARIO
+   ======================= */
+.form-section {
+    flex: 1; /* Hace que el formulario ocupe el mismo espacio flexible disponible dentro del contenedor (por ejemplo, junto a otra sección) */
+    min-width: 300px; /* Establece un ancho mínimo para asegurar que el formulario no se encoja demasiado en pantallas pequeñas */
+    background-color: lch(91.2% 2.87 19.39); /* Color de fondo claro usando el modelo de color LCH (blanco cálido para resaltar el formulario) */
+    padding: 2rem; /* Espaciado interno (relleno) alrededor del contenido del formulario */
+    border-radius: 10px; /* Bordes redondeados para un diseño más suave y moderno */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil para que el formulario se vea elevado sobre el fondo */
+}
+
+/* =======================
+   TÍTULO DEL FORMULARIO
+   ======================= */
+.form-section h2 {
+    text-align: center; /* Centra el texto del título horizontalmente */
+    font-size: 2.7rem; /* Tamaño grande para que el título sea llamativo */
+    color: hsl(266, 78%, 5%); /* Color oscuro con tonalidad púrpura (usando el modelo HSL) */
+    margin-bottom: 20px; /* Espacio inferior para separar el título del contenido que sigue */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Sombra muy sutil para darle profundidad al texto del título */
+}
+
+/* =======================
+   PÁRRAFO EXPLICATIVO
+   ======================= */
+.form-section p {
+    text-align: center; /* Centra el texto del párrafo */
+    font-size: 1rem; /* Tamaño de fuente estándar para facilitar la lectura */
+    margin-bottom: 1.5rem; /* Espacio inferior para separar del siguiente elemento (por ejemplo, el formulario) */
+    color: #555; /* Gris medio, ideal para lectura sin tanto contraste como el negro */
+}
+
+/* =======================
+   CAMPOS DE ENTRADA
+   ======================= */
+.form-section input {
+    width: 100%; /* El campo ocupa todo el ancho disponible del contenedor */
+    padding: 12px; /* Espaciado interno para que el texto no quede pegado a los bordes */
+    margin-bottom: 1.5rem; /* Espacio inferior entre campos de entrada */
+    border: 1px solid #ccc; /* Borde gris claro que define el contorno del input */
+    border-radius: 5px; /* Esquinas ligeramente redondeadas para un diseño más amigable */
+    box-sizing: border-box; /* Incluye padding y borde dentro del ancho total (evita desbordamientos) */
+    font-size: 1rem; /* Tamaño de texto estándar para buena legibilidad */
+    background-color: #f9f9f9; /* Fondo claro que diferencia el campo del fondo blanco del formulario */
+}
+/* =======================
+   ETIQUETAS
+   ======================= */
+.form-section label {
+    display: block; /* Hace que la etiqueta ocupe toda la línea, ubicándose encima del input */
+    margin-bottom: 0.5rem; /* Espacio inferior para separar la etiqueta del campo */
+    font-weight: 600; /* Grosor medio-alto del texto para mejor visibilidad */
+    color: #6a0dad; /* Morado oscuro: resalta visualmente la etiqueta */
+}
+
+/* =======================
+   BOTÓN DE ENVÍO CON COLOR VIVO
+   ======================= */
+.form-section button {
+    width: 100%; /* Ocupa todo el ancho del contenedor, alineado con los campos */
+    background-color: #5e2b9e; /* Color morado intenso: llamativo y coherente con la paleta */
+    color: white; /* Texto en blanco para generar buen contraste */
+    padding: 15px; /* Espaciado interno amplio: mejora la accesibilidad y el tacto en móviles */
+    border: none; /* Elimina el borde por defecto del botón */
+    border-radius: 8px; /* Esquinas redondeadas para una apariencia más suave */
+    font-size: 1.1rem; /* Tamaño del texto ligeramente mayor para destacar */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón (interacción visual) */
+    font-weight: bold; /* Texto en negrita para darle énfasis al llamado a la acción */
+    transition: transform 0.2s ease; /* Agrega una animación suave cuando se interactúa */
+}
+/* ============================================
+   MENSAJE DE ÉXITO (Estilo Moderno)
+   ============================================ */
+.mensaje-exito {
+    display: none; /* Oculto por defecto, se mostrará al enviar el formulario */
+    position: fixed; /* Fijado en la pantalla, no se mueve al hacer scroll */
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste fino para centrar con precisión */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.mensaje-contenido {
+    background-color: #fff; /* Fondo blanco para el mensaje */
+    border-radius: 20px; /* Bordes redondeados suaves */
+    padding: 50px 40px; /* Espaciado interno generoso (vertical y horizontal) */
+    text-align: center; /* Centrado del texto */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Sombra con profundidad suave */
+    max-width: 450px; /* Ancho máximo del mensaje */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna y legible */
+    animation: fadeIn 0.5s ease-in-out; /* Animación de aparición suave */
+}
+
+/* [AÑADIDO] Animación para la entrada del mensaje */
+@keyframes fadeIn { /* Define una animación llamada fadeIn */
+    from {
+        opacity: 0; /* Empieza completamente transparente */
+        transform: scale(0.9); /* Ligeramente más pequeño */
+    }
+    to {
+        opacity: 1; /* Termina completamente visible */
+        transform: scale(1); /* Vuelve a su tamaño normal */
+    }
+}
+
+.mensaje-contenido i { /* Estilos aplicados al ícono dentro del contenedor de mensaje */
+    color: #4caf50; /* Verde típico de éxito o confirmación */
+    font-size: 4rem; /* Tamaño grande para el ícono */
+    margin-bottom: 25px; /* Espacio debajo del ícono */
+    animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Animación con efecto de resorte */
+}
+
+/* [AÑADIDO] Animación de resorte para el ícono */
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.mensaje-contenido h3 {
+    font-size: 2.2rem;      /* Tamaño grande para el título */
+    color: #333;            /* Color gris oscuro para mejor legibilidad */
+    margin-bottom: 15px;    /* Espacio inferior para separarlo del párrafo */
+    font-weight: 700;       /* Negrita para destacar el título */
+}
+
+.mensaje-contenido p {
+    font-size: 1.1rem;      /* Tamaño ligeramente mayor al texto normal para legibilidad */
+    color: #666;            /* Color gris medio, suave a la vista */
+    margin: 0;              /* Elimina márgenes por defecto del párrafo */
+}
+
+/* ============================================
+   SECCIÓN DE ANIMALES
+   ============================================ */
+#animales {
+    padding: 4rem 2rem; /* Espaciado interno para dar aire a la sección */
+    background-color: hsl(323, 34%, 72%); /* Fondo claro para distinguir del resto */
+    text-align: center; /* Centra todos los textos de la sección */
+}
+
+/* ============================================
+   TÍTULO PRINCIPAL DE LA SECCIÓN DE ANIMALES
+   ============================================ */
+#animales h2 {
+    font-size: 2.5rem; /* Tamaño grande para resaltar el título */
+    color: var(--color-principal); /* Usa el color principal definido en variables */
+    margin-bottom: 3rem; /* Espacio debajo del título */
+}
+
+/* Contenedor general en modo fila */
+.contenedor-animales {
+    display: flex; /* Alinea en fila */
+    justify-content: center; /* Centra horizontalmente */
+    gap: 2rem; /* Espacio entre tarjetas */
+    flex-wrap: wrap; /* Permite que se ajusten si no hay espacio */
+    padding: 2rem 1rem;
+}
+
+/* Cada tarjeta sigue con su estilo */
+.animal-card {
+    background-color: lch(91.2% 2.87 19.39);
+    border-radius: 15px; /* Bordes redondeados con un radio de 15px */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave debajo de la tarjeta para dar profundidad */
+    padding: 2rem; /* Espacio interno (relleno) alrededor del contenido dentro de la tarjeta */
+    max-width: 300px; /* Limita el ancho máximo de la tarjeta a 300px */
+    width: 100%; /* Hace que la tarjeta ocupe el 100% del contenedor padre hasta un máximo de 300px */
+    text-align: center; /* Centra horizontalmente el contenido textual dentro de la tarjeta */
+}
+
+.animal-card img {
+    width: 100%; /* La imagen ocupa todo el ancho disponible de su contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    border-radius: 10px; /* Bordes redondeados en la imagen con un radio de 10px */
+    margin-bottom: 1rem; /* Espacio inferior entre la imagen y el siguiente elemento (el título) */
+}
+
+.animal-card h3 {
+    font-size: 1.8rem; /* Tamaño grande para el texto del título */
+    color: var(--color-secundario); /* Aplica un color definido en una variable CSS (debe estar previamente declarada) */
+    margin-bottom: 0.5rem; /* Espacio inferior entre el título y el párrafo */
+}
+
+.animal-card p {
+    font-size: 1rem; /* Tamaño base para el texto descriptivo */
+    color: #444; /* Color gris oscuro para una buena legibilidad */
+    line-height: 1.6; /* Altura de línea para mejorar la separación entre líneas del párrafo */
+}
+/* ============================================
+   SECCIÓN AYUDA - CÓMO PUEDES AYUDAR
+   ============================================ */
+#ayuda {
+    background-color: hsl(323, 34%, 72%); /* Fondo lila suave usando valores HSL */
+    padding: 80px 20px;                   /* Espacio interior: 80px arriba/abajo, 20px a los lados */
+    text-align: center;                   /* Centra horizontalmente el texto dentro de esta sección */
+}
+
+#ayuda h2 {
+    font-size: 2.5rem;       /* Tamaño grande para el subtítulo o encabezado principal */
+    color: #551a8b;          /* Color púrpura oscuro para destacar el título */
+    margin-bottom: 25px;     /* Espacio inferior entre el título y el párrafo */
+    font-weight: 700;        /* Negrita para hacer el título más llamativo */
+}
+
+#ayuda > p {
+    font-size: 1.25rem;      /* Tamaño más grande que el texto normal para resaltar */
+    color: #444;             /* Gris oscuro para buena legibilidad */
+    line-height: 1.6;        /* Altura de línea para mejorar la lectura del párrafo */
+    margin-bottom: 50px;     /* Espacio inferior con respecto al siguiente contenido */
+    max-width: 900px;        /* Limita el ancho máximo del párrafo para mantenerlo legible */
+    margin-left: auto;       /* Centra horizontalmente el párrafo (combinado con margin-right) */
+    margin-right: auto;
+}
+
+/* CONTENEDORES DE CADA OPCIÓN (Donar / Ser voluntario) */
+.opciones-contenedor {
+    /* Contenedor flexible para agrupar las opciones */
+    display: flex; /* Usa flexbox para disposición horizontal */
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    gap: 40px; /* Espacio entre cada opción */
+    flex-wrap: wrap; /* Permite que las opciones bajen en pantallas pequeñas */
+}
+
+.ayuda-opcion {
+    /* Caja individual para cada opción de ayuda */
+    background-color: #fff; /* Fondo blanco para resaltar */
+    border: none; /* Sin borde */
+    border-radius: 12px; /* Bordes redondeados */
+    padding: 40px 30px; /* Espaciado interno amplio */
+    flex: 1; /* Hace que crezca para ocupar espacio disponible */
+    max-width: 400px; /* Limita el ancho para mantener buen diseño */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra suave para profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave en hover */
+    text-align: left; /* Alinea texto a la izquierda */
+
+    /* [AÑADIDO] disposición para la imagen y el texto */
+    display: flex; /* Usa flexbox dentro de cada opción */
+    flex-direction: column; /* Apila el contenido en columna */
+    align-items: flex-start; /* Alinea elementos al inicio del eje horizontal */
+}
+
+.ayuda-opcion:hover {
+    /* Efecto visual al pasar el mouse por encima */
+    transform: translateY(-10px); /* Eleva la caja ligeramente */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+}
+
+/* [AÑADIDO] contenedor para la imagen */
+.ayuda-imagen {
+    width: 100%;
+    height: 150px; /* [MODIFICADO] altura fija para las imágenes */
+    margin-bottom: 20px; /* Espacio entre la imagen y el título */
+    border-radius: 8px;
+    overflow: hidden; /* Recorta las imágenes si exceden el borde */
+}
+
+.ayuda-imagen img {
+    width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* Imagen ocupa toda la altura del contenedor */
+    object-fit: cover; /* Cubre el contenedor manteniendo proporción */
+}
+
+.ayuda-opcion h3 {
+    font-size: 1.8rem; /* Tamaño de fuente del título */
+    color: #551a8b; /* Color morado del título */
+    margin-bottom: 15px; /* Espacio debajo del título */
+}
+
+.ayuda-opcion p {
+    font-size: 1rem; /* Tamaño del texto del párrafo */
+    color: #555; /* Color gris oscuro del texto */
+    line-height: 1.6; /* Altura entre líneas del párrafo */
+    margin-bottom: 25px; /* Espacio debajo del párrafo */
+}
+
+/* BOTONES DE ACCIÓN */
+.button {
+    display: inline-block; /* Se comporta como un botón en línea */
+    background-color: #551a8b; /* Fondo morado del botón */
+    color: #fff; /* Texto blanco */
+    padding: 14px 30px; /* Espaciado interno: vertical 14px, horizontal 30px */
+    text-decoration: none; /* Quita el subrayado (si es un enlace) */
+    border-radius: 50px; /* Bordes redondeados estilo cápsula */
+    font-weight: bold; /* Texto en negrita */
+    font-size: 1rem; /* Tamaño del texto */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Efecto suave al pasar el mouse */
+}
+
+.button:hover {
+    background-color: #47207a; /* Cambia el color de fondo al pasar el mouse */
+    transform: translateY(-3px); /* Eleva ligeramente el botón */
+}
+
+/* ==============================
+   SECCIÓN FOOTER - PIE DE PÁGINA
+   ============================== */
+footer {
+    background-color:#5e2b9e;    /* Color morado azulado (igual que el botón y los títulos) */
+    color: #fff;                   /* Texto blanco para contraste sobre el fondo oscuro */
+    text-align: center;           /* Centra el contenido del footer */
+    padding: 30px 20px;           /* Espacio interno (arriba/abajo: 25px, lados: 15px) */
+    font-size: 0.95rem;           /* Tamaño de texto un poco más pequeño que el normal */
+    margin-top: 40px;             /* Espacio superior para separarlo de la última sección */
+    position: relative;           /* Por si quieres posicionar elementos más adelante */
+    z-index: 10;                  /* Asegura que esté por encima de fondos u otros elementos */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil hacia arriba */
+}
+
+footer p {
+    margin: 0;                    /* Elimina el margen por defecto del párrafo */
 }
