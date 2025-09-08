@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Portales Golden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main>
+
+    <section class="booking-section">
+        <div class="container">
+            <h2 class="section-title">Reserva tu Habitación</h2>
+            <p class="subtitle">Completa el formulario y nos pondremos en contacto contigo inmediatamente</p>
+
+            <form class="booking-form">
+                <div class="form-group">
+                    <label for="nombre-completo">Nombre Completo</label>
+                    <input type="text" id="nombre-completo" placeholder="Tu nombre completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="+57 300 123 4567">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha-entrada">Fecha de Entrada</label>
+                        <input type="date" id="fecha-entrada">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-salida">Fecha de Salida</label>
+                        <input type="date" id="fecha-salida">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo-habitacion">Tipo de Habitación</label>
+                    <select id="tipo-habitacion">
+                        <option value="">Selecciona el tipo de habitación</option>
+                        <option value="matrimonial">Habitación Matrimonial</option>
+                        <option value="doble">Habitación Doble</option>
+                        <option value="jacuzzi">Habitación con Jacuzzi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje-adicional">Mensaje Adicional (Opcional)</label>
+                    <textarea id="mensaje-adicional" placeholder="Comentarios o solicitudes especiales"></textarea>
+                </div>
+
+                <a href="#" class="btn btn-whatsapp" id="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+        </a>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact-info-section">
+    <div class="container">
+        <div class="contact-info-card">
+            <h4>Información de Contacto</h4>
+            
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p class="contact-label">Dirección</p>
+                        <p class="contact-detail">Calle 123 #45-67, Bogotá, Colombia</p>
+                    </div>
+                </li>
+                <li class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <p class="contact-label">Teléfono</p>
+                        <p class="contact-detail">+51 949265128</p>
+                    </div>
+                </li>
+                <li class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p class="contact-label">Email</p>
+                        <p class="contact-detail">info@portalesgolden.com</p>
+                    </div>
+                </li>
+            </ul>
+            
+            <a href="tel:+5712345678" class="btn btn-call">
+    <i class="fas fa-phone-alt"></i> Llamar Ahora
+        </a>
+        </div>
+    </div>
+</section>
+
+<section class="location-section">
+    <div class="container">
+        <h2 class="section-title">Nuestra Ubicación</h2>
+        <p class="subtitle">Encuéntranos fácilmente en el centro de la ciudad.</p>
+
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.602737085758!2d-74.0754026241355!3d4.654388642055661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a562635a963%3A0x66c89c8a1e35f606!2sPortales%20Golden!5e0!3m2!1ses!2sco!4v1709425575551!5m2!1ses!2sco"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+       <a href="https://maps.app.goo.gl/hUgLHCz6TG5uXUAb7?g_st=aw" target="_blank" class="btn btn-primary">
+    <i class="fas fa-map-marked-alt"></i> Ver en Google Maps
+    </a>
+    </div>
+</section>
+    </main>
+     <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/script.js"></script>
+
+</body>
+</html>

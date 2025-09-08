@@ -1,0 +1,1086 @@
+/* ================================
+   RESET BÁSICO
+=================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5; /* Fondo general claro */
+    color: #333; /* Texto general oscuro */
+    padding-top: 80px; /* Ajusta este valor según la altura de tu barra de navegación */
+    margin: 0;
+    padding: 0;
+}
+
+/* ================================
+   HEADER / NAVBAR
+=================================== */
+
+header {
+    background-color: #1a1a1a; /* Fondo oscuro para contraste */
+    color: #fff;
+    padding: 20px;
+    position: fixed; /* Mantiene la barra de navegación en una posición fija */
+    top: 0; /* La ancla a la parte superior de la ventana del navegador */
+    width: 100%; /* Asegura que ocupe todo el ancho de la pantalla */
+    z-index: 1000;
+    
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: hsl(51, 100%, 50%); /* Dorado, tono minero */
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ffd700; /* Resalta al pasar el mouse */
+}
+/*    SECCION HEADER*/
+
+/* Importa la fuente Montserrat desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* ==== Estilos generales del HEADER ==== */
+.main-header {
+    background-color: #0B1F2A; /* Fondo azul marino */
+    color: white; /* Texto en color blanco */
+    position: fixed; /* Mantiene el header fijo en la parte superior al hacer scroll */
+    top: 0; /* Posición en la parte superior de la página */
+    left: 0; /* Alineado a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    z-index: 1000; /* Se asegura de estar por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+}
+
+/* Contenedor interno que ordena logo y menú en una sola línea */
+.container-header {
+    max-width: 1200px; /* Ancho máximo del contenido */
+    margin: auto; /* Centra el contenido horizontalmente */
+    padding: 10px 20px; /* Espaciado interno */
+    display: flex; /* Coloca elementos en fila */
+    justify-content: space-between; /* Espacia logo a la izquierda y menú a la derecha */
+    align-items: center; /* Centra verticalmente el logo y el menú */
+}
+
+/* LOGO: imagen + texto */
+.logo {
+    display: flex; /* Coloca logo e h1 en la misma línea */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+    gap: 10px; /* Espacio entre logo y texto */
+}
+
+.logo img {
+    height: 50px; /* Tamaño de la imagen del logo */
+}
+
+.logo h1 {
+    font-family: 'Montserrat', sans-serif; /* Fuente moderna */
+    font-size: 1.5rem; /* Tamaño de letra */
+    color: #FFD700; /* Dorado */
+    font-weight: 700; /* Texto en negrita */
+}
+
+/* Menú de navegación */
+.nav-menu ul {
+    list-style: none; /* Quita los puntos de la lista */
+    display: flex; /* Coloca los enlaces en una sola línea */
+    gap: 20px; /* Espacio entre enlaces */
+    margin: 0; /* Quita márgenes */
+    padding: 0; /* Quita relleno */
+}
+
+/* Estilo de los enlaces del menú */
+.nav-menu ul li a {
+    text-decoration: none; /* Quita el subrayado */
+    color: white; /* Texto blanco */
+    font-family: 'Montserrat', sans-serif; /* Fuente uniforme */
+    font-weight: 500; /* Peso medio del texto */
+    transition: color 0.3s ease; /* Transición suave al cambiar de color */
+}
+
+/* Efecto al pasar el mouse sobre los enlaces */
+.nav-menu ul li a:hover {
+    color: #FFD700; /* Cambia a dorado al pasar el mouse */
+}
+
+/* ================================
+   HERO
+=================================== */
+.hero {
+    background: url("../img/mina-bg.jpg") no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para texto legible */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #ffd700;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #e6b800;
+}
+
+/* ================================
+   SECCIÓN "QUIÉNES SOMOS"
+=================================== */
+/* --- Estilos para la sección de Misión, Visión y Valores --- */
+.mvv-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f4f4f4; /* Fondo gris claro */
+    
+    
+}
+
+/* Título y descripción de la sección */
+.quienes-somos-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.quienes-somos-intro h2 {
+    color: #000; /* Color negro para el título */
+    font-size: 2.5em;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Pseudo-elemento para la barra roja debajo de "Quiénes" */
+.quienes-somos-intro h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(0.7 * 1em * 6); /* Ancho aproximado de "Quiénes" */
+    height: 6px; /* Altura de la barra */
+    background-color: #cc0055; /* Color rojo */
+    border-radius: 3px;
+}
+
+.quienes-somos-intro p {
+    color: #333; /* Texto en gris oscuro */
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* Contenedor de los ítems */
+.mvv-container-dinamico {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mvv-item {
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Estilo para el círculo difuminado doble */
+.icono-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    background-color: #ccc; /* El color de la "dona" (anillo exterior) */
+    position: relative; /* Para posicionar el span interior */
+}
+
+.icono-contenedor i {
+    font-size: 2.5em;
+    color: #f7c019; /* Color de tu ícono */
+    z-index: 2; /* Asegura que el ícono esté encima del círculo interior */
+}
+
+.icono-contenedor span {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* Tamaño del círculo interior "vacío" */
+    height: 60px;
+    background-color: #f4f4f4; /* El color del fondo de la sección para simular el vacío */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.mvv-item h3 {
+    color: hsl(51, 100%, 50%);
+    margin-bottom: 10px;
+}
+
+.mvv-item p {
+    color: #666; /* Color plomo oscuro para los párrafos */
+    line-height: 1.6;
+}
+
+/* Responsividad para móviles y tabletas */
+@media (max-width: 992px) {
+    .mvv-item {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .mvv-item {
+        width: 100%;
+    }
+}
+/* ================================
+   SERVICIOS DESTACADOS
+=================================== */
+.services-home {
+    background-color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    
+}
+
+.services-home h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.service-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.service-card h3 {
+    font-size: 1.3rem;
+    margin: 15px 0 10px;
+    color: #1a1a1a;
+}
+
+.service-card p {
+    font-size: 1rem;
+    padding: 0 15px 15px;
+    color: #555;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: hsl(0, 89%, 4%);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 15px;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #ffd700;
+    color: #000;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 30px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Estilo para el título "Síguenos" */
+.footer-social h4 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Estilo para cada ícono de red social */
+.footer-social a i {
+    font-size: 25px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Colores de marca de cada red social */
+.footer-social a[href*="facebook.com"] {
+    color: #1877F2; /* Facebook azul */
+}
+
+.footer-social a[href*="instagram.com"] {
+    color: #E4405F; /* Instagram rojizo */
+}
+
+.footer-social a[href*="wa.me"] {
+    color: #25D366; /* WhatsApp verde */
+}
+
+/* Efecto hover */
+.footer-social a:hover {
+    transform: scale(1.2);
+}
+
+/* Íconos Font Awesome */
+.footer-social i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.footer-info {
+    text-align: center;
+    flex: 1 0 100%;
+    margin-top: 15px;
+    font-size: 13px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    color: #aaa;
+}
+
+
+/* ======= PÁGINA NOSOTROS ======= */
+
+.nosotros-page {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nosotros-page h2 {
+    color: hsl(0, 1%, 34%); /* Gris oscuro para el título */
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f7c019; /* Línea de acento amarillo/naranja */
+    padding-bottom: 10px;
+}
+
+.nosotros-page p {
+    color: lab(23.17% 0.43 0.15); /* Un gris más claro para el texto del párrafo */
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* --- Estilo para la Sección Hero --- */
+.nosotros-hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.nosotros-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nosotros-hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; /* Texto blanco para un contraste nítido */
+    text-align: center;
+    padding: 20px;
+}
+
+.nosotros-hero-text h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para que el texto resalte aún más */
+}
+
+.nosotros-hero-text p {
+    font-size: 1.4em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Estilo para la Sección de Valores Detallados --- */
+.valores-detallados {
+    margin-bottom: 40px;
+}
+
+.valor-item {
+    background-color: #f4f4f4; /* Un gris muy claro como fondo */
+    padding: 25px;
+    margin-bottom: 15px;
+    border-left: 5px solid #f7c019; /* Borde de acento amarillo/naranja */
+    border-radius: 5px;
+}
+
+.valor-item h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* --- Estilo para la Sección de Nuestro Equipo --- */
+/* --- Estilo para la Sección del Equipo --- */
+.equipo-section {
+    background-color: #f4f4f4; /* Un gris claro para el fondo de la sección */
+    padding: 50px 20px;
+}
+
+.equipo-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f7c019; /* El color de acento */
+    padding-bottom: 10px;
+    display: inline-block; /* Asegura que la línea solo cubra el texto */
+}
+
+/* --- Contenedor de las Tarjetas --- */
+.equipo-container {
+    display: flex; /* Habilita el comportamiento de fila */
+    flex-wrap: wrap; /* Permite que las tarjetas salten de línea en pantallas pequeñas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 30px; /* Espacio entre las tarjetas */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Estilo de cada Tarjeta de Miembro --- */
+.miembro-equipo {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 20px;
+    width: 300px; /* Ancho fijo para cada tarjeta */
+    box-sizing: border-box;
+}
+
+.miembro-equipo img {
+    width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 300px; /* Altura fija para que todas las imágenes sean del mismo tamaño */
+    object-fit: cover; /* Recorta la imagen para que se ajuste sin distorsionarse */
+    display: block;
+    
+}
+
+.miembro-info {
+    padding: 15px;
+}
+
+.miembro-info h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.miembro-info p {
+    color: #777;
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+/* Media query para hacer que las tarjetas sean responsivas en pantallas pequeñas */
+@media (max-width: 992px) {
+    .miembro-equipo {
+        width: 45%; /* Para que quepan dos por fila */
+    }
+}
+
+@media (max-width: 576px) {
+    .miembro-equipo {
+        width: 100%; /* Una por fila en móviles */
+    }
+}
+/* ========================================================== */
+/* Estilos para la página de servicios */
+/* ========================================================== */
+.intro-banner {
+    background-color: #003366; /* Un azul más oscuro */
+    color: white;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.intro-content {
+    flex: 1;
+}
+
+.intro-content h1 {
+    color: white;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.intro-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.intro-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.intro-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+
+/* 2. SECCIÓN DE TARJETAS (GRID) */
+.services-grid-section {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.service-card {
+    background-color: var(--card-background); /* Fondo de la tarjeta: blanco */
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para un efecto suave */
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+}
+
+/* Efecto al pasar el cursor sobre la tarjeta */
+.service-card:hover {
+    transform: translateY(-5px); /* Se eleva ligeramente */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+}
+
+.service-icon-container {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background-color: transparent; /* Fondo transparente */
+    color: var(--primary-color); /* Color del ícono: azul oscuro */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border: 2px solid var(--primary-color); /* Borde azul sutil */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+
+/* 3. SECCIÓN DE VALOR AÑADIDO (Innovación) */
+.value-prop-section {
+    background-color: white;
+    padding: 80px 20px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.value-prop-image {
+    flex: 1;
+}
+
+.value-prop-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+.value-prop-content {
+    flex: 1;
+}
+
+.value-prop-content h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+
+/* 4. SECCIÓN DE LLAMADA A LA ACCIÓN FINAL */
+.cta-banner {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.cta-banner h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-banner p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+/* ========================================================== */
+/*         PAGINA DE COMENTARIOS*/
+/* ========================================================== */
+/* Fondo general */
+.comments-page {
+    background: linear-gradient(to bottom, #001F3F 0%, #ffffff 100%);
+    padding: 60px 20px;
+}
+
+/* Título */
+.comments-intro h1 {
+    font-size: 2.5rem;
+    color: #FFD700;
+}
+.underline {
+    width: 80px;
+    height: 4px;
+    background-color: #FFD700;
+    margin: 10px auto 20px;
+}
+.comments-intro p {
+    color: #f0f0f0;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* Comentario destacado */
+.highlighted-comment {
+    background: #FFD700;
+    color: #001F3F;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.highlighted-comment i {
+    font-size: 2rem;
+}
+.highlighted-comment p {
+    font-size: 1.2rem;
+    margin: 15px 0;
+    font-style: italic;
+}
+.highlighted-comment h4 {
+    font-weight: bold;
+}
+.highlighted-comment .stars i {
+    color: #001F3F;
+}
+
+/* Lista de comentarios */
+.comments-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+.comment-item {
+    background: #001F3F;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #FFD700;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.comment-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Foto del cliente */
+.client-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FFD700;
+    position: absolute;
+    top: -30px;
+    left: 20px;
+}
+
+/* Comillas */
+.quote-icon {
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-top: 10px;
+}
+
+/* Texto */
+.comment-text {
+    margin: 40px 0 15px;
+    font-style: italic;
+}
+
+/* Estrellas */
+.stars i {
+    color: #FFD700;
+}
+
+
+/* ========================================================== */
+/* Estilos para la página de Contacto */
+/* ========================================================== */
+/* Estilos generales y variables */
+:root {
+    --primary-color: #004d99; /* Azul corporativo */
+    --secondary-color: #f4f7f9; /* Fondo claro */
+    --text-color: #333;
+    --heading-color: #1a1a1a;
+    --border-color: #ddd;
+    --font-family: 'Inter', sans-serif;
+}
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.contact-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Sección de Héroe */
+.contact-hero {
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    margin-bottom: 40px;
+}
+
+.contact-hero h1 {
+    font-size: 3.5em;
+    margin: 0;
+    font-weight: 700;
+}
+
+.contact-hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 15px auto 0;
+    opacity: 0.9;
+}
+
+/* Contenedor principal de Flexbox */
+.contact-main-section {
+    padding: 40px 0;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Información de Contacto */
+.contact-details {
+    flex: 1;
+    min-width: 300px; /* Asegura un ancho mínimo en pantallas grandes */
+}
+
+.contact-details h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-top: 0;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.info-item i {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-right: 15px;
+    min-width: 25px;
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.social-icons {
+    margin-top: 30px;
+}
+
+.social-icons a {
+    font-size: 2em;
+    color: var(--text-color);
+    margin-right: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* Formulario de Contacto */
+.contact-form-container {
+    flex: 2; /* El formulario ocupa más espacio que la info */
+    min-width: 350px;
+}
+
+.contact-form-container h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.contact-form button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #003366; /* Un tono más oscuro */
+    transform: translateY(-2px);
+}
+
+/* Sección de Mapa */
+.contact-map-full {
+    margin-top: 60px;
+}
+
+.contact-map-full h2 {
+    text-align: center;
+    font-size: 2em;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.map-container iframe {
+    display: block;
+}
+
+/* Sección de Preguntas Frecuentes */
+.faq-section {
+    margin-top: 60px;
+    padding-bottom: 40px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2em;
+    color: var(--heading-color);
+    margin-bottom: 30px;
+}
+
+.faq-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.faq-item {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.faq-item h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.2em;
+}
+
+.faq-item p {
+    color: #555;
+}
+
+/* Media Queries para Responsive Design */
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 60px 20px;
+    }
+    
+    .contact-hero h1 {
+        font-size: 2.5em;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .contact-form-container, .contact-details {
+        min-width: unset;
+    }
+
+    .contact-details h2, .contact-form-container h2 {
+        font-size: 1.8em;
+    }
+}
+
+
+
+
+
+
