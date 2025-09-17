@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;             /* convierte en contenedor flexible */
+    justify-content: center;   /* centra horizontalmente */
+    align-items: center;       /* centra verticalmente */
+    min-height: 100vh;         /* ocupa toda la altura de la pantalla */
+    margin: 0;
+    background-color: #f5f5f5; /* color de fondo opcional */
+    flex-direction: column;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color: lab(31.8% 1.67 -0.75);
+    
+}
+
+h3 {
+    text-align: center;
+    color: white;
+}
+
+/* Contenedor general del carrusel */
+.carrusel-wrapper {
+   display: flex;
+  flex-direction: column;  /* título arriba, carrusel debajo */
+  align-items: center;     /* centra todo horizontalmente */
+  gap: 20px;               /* espacio entre el título y el carrusel */
+  margin-top: 30px;
+}
+
+
+
+.carrusel-contenedor {
+    width: 340px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.galeria {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    animation: carrusel-animacion 20s infinite;
+}
+
+.galeria-items {
+    margin: 0 20px;
+    background-color: gray;
+    border-radius: 8px;
+    width: 300px;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.galeria-items img {
+    width: 90px;
+    height: auto;
+    border-radius: 8px;
+    background-size: cover;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+p {
+    text-align: left;
+}
+
+@keyframes carrusel-animacion {
+    0% { transform: translateX(0); }
+    16.6% { transform: translateX(0); }
+    
+    20% { transform: translateX(-340px); }
+    33.2% { transform: translateX(-340px); }
+
+    36.6% { transform: translateX(-680px); }
+    50% { transform: translateX(-680px); }
+
+    53.4% { transform: translateX(-1020px); }
+    66.6% { transform: translateX(-1020px); }
+
+    70% { transform: translateX(-1360px); }
+    83.2% { transform: translateX(-1360px); }
+
+    86.6% { transform: translateX(-1700px); }
+    100% { transform: translateX(0); }
+}
