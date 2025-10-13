@@ -1,0 +1,1 @@
+export default function LoginView() { return <h1>Página de Login</h1>; }

@@ -1,0 +1,1 @@
+export default function ParticipantListView() { return <h1>Módulo Participantes</h1>; }

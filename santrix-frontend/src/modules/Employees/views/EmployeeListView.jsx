@@ -1,0 +1,1 @@
+export default function EmployeeListView() { return <h1>Módulo Empleados</h1>; }
