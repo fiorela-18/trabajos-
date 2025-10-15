@@ -1,24 +1,30 @@
 import { 
-  Box, SimpleGrid, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, 
+  Box, SimpleGrid, Stat, StatLabel, StatNumber, // <-- SOLO COMPONENTES ESTABLES
   Heading, Text, VStack, Icon, Flex 
 } from '@chakra-ui/react';
+// ¡Las importaciones fallidas (StatHelpText, StatArrow) han sido ELIMINADAS!
+
 import { FiUsers, FiBriefcase, FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
-import React from 'react'; // Aseguramos que React esté importado
+import React from 'react';
 
-// Componente reusable para las tarjetas de métricas
-// ... (el resto del código del Dashboard)
-
-// Componente reusable para las tarjetas de métricas
+// Componente reusable para las tarjetas de métricas (Simplificado)
 const MetricCard = ({ title, value, change, changeType, icon }) => (
   <Stat p={5} shadow="md" border="1px" borderColor="gray.100" borderRadius="lg" bg="white">
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
         <StatLabel fontWeight="medium" fontSize="sm">{title}</StatLabel>
         <StatNumber fontSize="2xl" fontWeight="bold" my={1}>{value}</StatNumber>
-        <StatHelpText m={0}>
-          <StatArrow type={changeType} />
+        
+        {/* Usamos Text en lugar de StatHelpText/StatArrow */}
+        <Text 
+          fontSize="xs" 
+          fontWeight="medium"
+          color={changeType === 'increase' ? 'green.500' : 'red.500'} 
+          m={0}
+        >
           {change} este mes
-        </StatHelpText>
+        </Text>
+        
       </Box>
       <Icon as={icon} w={8} h={8} color="teal.500" />
     </Flex>
@@ -27,7 +33,7 @@ const MetricCard = ({ title, value, change, changeType, icon }) => (
 
 export default function DashboardView() {
   return (
-    <Box p={6}>
+    <Box p={6} bg="gray.50">
       <Heading size="lg" mb={6}>Panel Principal (Dashboard)</Heading>
       
       {/* 1. MÓDULO DE MÉTRICAS */}
@@ -35,28 +41,28 @@ export default function DashboardView() {
         <MetricCard 
           title="Empleados Activos" 
           value="125" 
-          change="5.2%" 
+          change="5.2% ▲" 
           changeType="increase" 
           icon={FiUsers}
         />
         <MetricCard 
           title="Proyectos en Curso" 
           value="18" 
-          change="1.1%" 
+          change="1.1% ▲" 
           changeType="increase" 
           icon={FiBriefcase}
         />
         <MetricCard 
           title="Vacaciones Pendientes" 
           value="4" 
-          change="30 días" 
+          change="30 días ▼" 
           changeType="decrease" 
           icon={FiAlertTriangle}
         />
         <MetricCard 
           title="Tareas Finalizadas" 
           value="987" 
-          change="12%" 
+          change="12% ▲" 
           changeType="increase" 
           icon={FiCheckCircle}
         />
