@@ -1,70 +1,79 @@
-import { 
-    Flex, Box, IconButton, Menu, MenuButton, 
-    MenuList, MenuItem, MenuDivider, Text, useToast, // <-- useToast es clave
-} from '@chakra-ui/react';
-import { FiLogOut, FiSettings, FiUser } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom'; // <-- useNavigate es clave
 import React from 'react';
+import { 
+    Box, Flex, Text, IconButton, InputGroup, InputLeftElement, Input, Menu, MenuButton, MenuList, MenuItem 
+} from '@chakra-ui/react';
+import { FiSearch, FiBell, FiUser, FiSettings } from 'react-icons/fi';
 
-export default function Header() { 
-    const navigate = useNavigate();
-    const toast = useToast();
+// Colores definidos en el DashboardLayout
+const PRIMARY_COLOR = "teal.500"; 
+const HEADER_BG = "white"; 
 
-    const handleLogout = () => {
-        // 1. Limpiar la sesión
-        localStorage.removeItem('user_auth');
-        
-        toast({
-            title: 'Sesión Finalizada.',
-            description: 'Has cerrado sesión correctamente.',
-            status: 'info',
-            duration: 3000,
-            isClosable: true,
-        });
-
-        // 2. Redirigir al Login y limpiar el historial
-        navigate('/login', { replace: true });
-    };
-
+/**
+ * Header (Barra Superior) - Contiene la Búsqueda y Perfil.
+ * @param {object} props - Propiedades del componente.
+ * @param {string} props.userEmail - Email del usuario logueado.
+ */
+export default function Header({ userEmail }) {
     return (
         <Flex 
-            px="4" 
-            h="16" 
-            alignItems="center" 
-            justifyContent="space-between" 
+            w="full" 
+            h="70px" 
+            bg={HEADER_BG}
+            align="center"
+            justify="space-between"
+            p={4}
+            borderBottom="1px solid #E2E8F0"
         >
-            {/* IZQUIERDA: Logo o Título */}
-            <Box>
-                <Text fontSize="xl" fontWeight="bold" color="teal.600">Santrix HR</Text>
-            </Box>
+            {/* Título Principal */}
+            <Text fontSize="lg" fontWeight="extrabold" color="#2C3E50">
+                Recursos humanos de Santrix
+            </Text>
 
-            {/* DERECHA: Opciones de Usuario / Logout */}
-            <Flex alignItems={'center'}>
+            <Flex align="center">
+                {/* Barra de Búsqueda */}
+                <InputGroup w="300px" mr={4}>
+                    <InputLeftElement pointerEvents="none" children={<FiSearch color="gray.300" />} />
+                    <Input 
+                        type="text" 
+                        placeholder="Buscar empleados, proyectos..." 
+                        rounded="lg" 
+                        bg="gray.50" 
+                        border="none"
+                        _focus={{ ring: 1, ringColor: PRIMARY_COLOR }}
+                    />
+                </InputGroup>
+
+                {/* Notificaciones */}
+                <IconButton
+                    icon={<FiBell />}
+                    aria-label="Notificaciones"
+                    size="md"
+                    variant="ghost"
+                    rounded="full"
+                    color="gray.600"
+                    position="relative"
+                    mr={3}
+                    _hover={{ bg: 'gray.100' }}
+                >
+                    <Box as="span" position="absolute" top="8px" right="8px" h="8px" w="8px" bg="red.500" rounded="full" fontSize="xs" border="1px solid white"/>
+                </IconButton>
+
+                {/* Perfil (Solo opciones de Configuración/Perfil) */}
                 <Menu>
-                    <MenuButton 
-                        py={2} 
-                        transition="all 0.3s" 
-                        _focus={{ boxShadow: 'none' }}
-                        // Aquí podrías usar un Avatar si lo tuvieras importado
-                    >
-                        <Text fontWeight="medium">admin@santrix.com</Text>
-                    </MenuButton>
-                    <MenuList 
-                        bg="white" 
-                        borderColor="gray.200"
-                    >
-                        <MenuItem icon={<FiUser />}>Perfil</MenuItem>
+                    <MenuButton as={IconButton} 
+                        icon={<FiUser />} 
+                        aria-label="Perfil de Usuario"
+                        size="lg"
+                        bg="#2C3E50"
+                        color="white"
+                        rounded="full"
+                        _hover={{ bg: PRIMARY_COLOR }}
+                    />
+                    <MenuList>
+                        <MenuItem fontWeight="bold">{userEmail}</MenuItem>
+                        <MenuItem icon={<FiUser />}>Ver Perfil</MenuItem>
                         <MenuItem icon={<FiSettings />}>Configuración</MenuItem>
-                        <MenuDivider />
-                        
-                        {/* BOTÓN DE CERRAR SESIÓN */}
-                        <MenuItem 
-                            icon={<FiLogOut />} 
-                            onClick={handleLogout} 
-                            color="red.500"
-                        >
-                            Cerrar Sesión
-                        </MenuItem>
+                        {/* Nota: La lógica de Cerrar Sesión va en el Sidebar */}
                     </MenuList>
                 </Menu>
             </Flex>

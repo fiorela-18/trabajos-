@@ -42,7 +42,8 @@ const matrixStyles = `
 
 
 export default function LoginView() {
-    const navigate = useNavigate();
+    // Aunque usamos useNavigate para consistencia, forzaremos la recarga al final
+    const navigate = useNavigate(); 
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure(); 
     
@@ -174,8 +175,12 @@ export default function LoginView() {
                 localStorage.setItem('user_role', expectedRole);
                 localStorage.setItem('user_email', email); 
                 
-                toast({ title: `Bienvenido, ${expectedRole.toUpperCase()}.`, description: 'Inicio de sesión exitoso.', status: 'success', duration: 2000, isClosable: true });
-                navigate('/dashboard', { replace: true });
+                toast({ title: `Bienvenido, ${expectedRole.toUpperCase()}.`, description: 'Inicio de sesión exitoso. Recargando la Matriz...', status: 'success', duration: 1500, isClosable: true });
+                
+                // FIX: Usar window.location.href para forzar la recarga
+                setTimeout(() => {
+                    window.location.href = '/dashboard'; 
+                }, 1500); 
             } else {
                 toast({ title: 'Error de acceso.', description: 'Credenciales o rol incorrectos.', status: 'error', duration: 3000, isClosable: true });
             }
@@ -202,12 +207,16 @@ export default function LoginView() {
 
             toast({
                 title: 'Registro y Acceso Exitoso.',
-                description: `Se ha simulado el registro como ${quickRole.toUpperCase()}. Accediendo al panel.`,
+                description: `Simulación de registro como ${quickRole.toUpperCase()}. Recargando la Matriz...`,
                 status: 'success',
-                duration: 2500,
+                duration: 1500,
                 isClosable: true,
             });
-            navigate('/dashboard', { replace: true });
+            
+            // FIX: Usar window.location.href para forzar la recarga
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 1500);
         }, 1000);
     };
 
