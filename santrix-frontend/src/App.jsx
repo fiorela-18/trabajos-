@@ -13,14 +13,17 @@ import NotFound from './modules/shared/NotFound';
 import EmployeeListView from './modules/Employees/views/EmployeeListView';
 import EmployeeFormView from './modules/Employees/views/EmployeeFormView';
 import ParticipantListView from './modules/Participants/views/ParticipantListView';
-import ParticipantFormView from './modules/Participants/views/ParticipantFormView.jsx'; // ¡Asegurando la importación!
+import ParticipantFormView from './modules/Participants/views/ParticipantFormView.jsx';
 
+// MÓDULOS DE GESTIÓN OPERATIVA
+import PerformanceView from './modules/Performance/views/PerformanceView';
+import VacationView from './modules/Vacations/views/VacationView';
+import ProjectsView from './modules/Projects/views/ProjectsView';
+import TrainingView from './modules/Training/views/TrainingView';
 
-// MÓDULOS NUEVOS (Gestión Operativa)
-import PerformanceView from './modules/Performance/views/PerformanceView'; // Módulo Desempeño
-import VacationView from './modules/Vacations/views/VacationView'; // Módulo Vacaciones (Carpeta 'Vacations')
-import ProjectsView from './modules/Projects/views/ProjectsView'; // Módulo Proyectos
-import TrainingView from './modules/Training/views/TrainingView'; // Módulo Capacitaciones
+// MÓDULOS NUEVOS
+import HorarioView from './modules/Horario/HorarioView';
+import EventsView from './modules/Events/EventsView';
 
 
 /**
@@ -68,12 +71,15 @@ export default function App() {
       <Route path="/participantes/nuevo" element={<ProtectedLayout><ParticipantFormView /></ProtectedLayout>} />
       <Route path="/participantes/editar/:id" element={<ProtectedLayout><ParticipantFormView isEdit={true} /></ProtectedLayout>} />
       
-      {/* MÓDULOS DE GESTIÓN OPERATIVA (Vistas Nuevas) */}
-      
+      {/* MÓDULOS DE GESTIÓN OPERATIVA */}
       <Route path="/desempeno" element={<ProtectedLayout><PerformanceView /></ProtectedLayout>} />
       <Route path="/vacaciones" element={<ProtectedLayout><VacationView /></ProtectedLayout>} />
       <Route path="/proyectos" element={<ProtectedLayout><ProjectsView /></ProtectedLayout>} />
       <Route path="/capacitaciones" element={<ProtectedLayout><TrainingView /></ProtectedLayout>} />
+      
+      {/* MÓDULOS NUEVOS: HORARIO Y EVENTOS */}
+      <Route path="/horario" element={<ProtectedLayout><HorarioView /></ProtectedLayout>} />
+      <Route path="/eventos" element={<ProtectedLayout><EventsView /></ProtectedLayout>} />
 
       {/* 404 */}
       <Route path="*" element={<ProtectedLayout><NotFound /></ProtectedLayout>} />
