@@ -130,13 +130,21 @@ export default function EventsView() {
   };
 
   return (
-    <Box p={6}>
-      <Flex mb={8} align="center">
-        <Heading size="lg" display="flex" alignItems="center">
-          <FiBell style={{ marginRight: '10px' }} />
-          {isAdmin ? 'Gestión de Eventos Corporativos' : 'Próximos Eventos'}
-        </Heading>
-        <Spacer />
+    <Box p={6} bg="gray.50" minH="100vh">
+      {/* Header - Mismo tamaño que los otros módulos */}
+      <Flex justify="space-between" align="center" mb={8}>
+        <Box>
+          <Heading size="xl" color="gray.800" display="flex" alignItems="center">
+            <FiBell style={{ marginRight: '10px' }} />
+            {isAdmin ? 'Gestión de Eventos Corporativos' : 'Próximos Eventos'}
+          </Heading>
+          <Text color="gray.600" mt={1}>
+            {isAdmin 
+              ? 'Administra cumpleaños, reuniones y celebraciones de la empresa.'
+              : 'Mantente al tanto de las actividades y celebraciones importantes de Santrix.'
+            }
+          </Text>
+        </Box>
         
         {/* Botón de crear SOLO para Admin */}
         {isAdmin && (
@@ -150,14 +158,8 @@ export default function EventsView() {
         )}
       </Flex>
 
-      <Text mb={6} color="gray.600">
-        {isAdmin 
-          ? 'Administra cumpleaños, reuniones y celebraciones de la empresa.'
-          : 'Mantente al tanto de las actividades y celebraciones importantes de Santrix.'
-        }
-      </Text>
-
-      <SimpleGrid minChildWidth="300px" spacing="20px">
+      {/* Lista de eventos - Mismo tamaño que los otros módulos */}
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
         {mockEvents.map(event => (
           <EventCard 
             key={event.id} 

@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header'; 
 
+// Nueva paleta de colores
+const AZUL_MARINO = "#0A192F";
+const ROJO_VINO = "#800020";
+const GRIS = "#B0B0B0";
+const BLANCO = "#FFFFFF";
+
 // Fija el ancho del Sidebar
 const SIDEBAR_WIDTH = "250px"; 
 
@@ -58,8 +64,8 @@ export default function MainLayout({ children }) {
                 h="100%"
                 w={SIDEBAR_WIDTH}
                 zIndex="sticky"
-                bg="gray.800" 
-                color="white"
+                bg={AZUL_MARINO} // Cambiado a azul marino
+                color={BLANCO}
                 p="4"
                 // Pasar el rol para que el menú se renderice dinámicamente
                 display={{ base: 'none', md: 'block' }} 
@@ -73,7 +79,7 @@ export default function MainLayout({ children }) {
                 ml={{ base: 0, md: SIDEBAR_WIDTH }} 
                 h="100%"
                 overflowY="auto"
-                bg="gray.50"
+                bg="gray.50" // Mantenido para buen contraste
             >
                 {/* 3. Header (Fijo en la parte superior) */}
                 <Box 
@@ -81,8 +87,9 @@ export default function MainLayout({ children }) {
                     position="sticky" 
                     top="0" 
                     zIndex="banner"
-                    bg="white"
+                    bg={BLANCO} // Cambiado a blanco
                     boxShadow="sm"
+                    borderBottom={`1px solid ${GRIS}`} // Añadido borde inferior
                 >
                     {/* Pasar el email y la función de logout al Header */}
                     <Header 

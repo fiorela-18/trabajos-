@@ -188,7 +188,7 @@ const AchievementsCard = () => {
   );
 };
 
-export default function ParticipantDashboard() {
+export default function PractitionerDashboard() {
   const myScheduleToday = { entry: '08:00', departure: '17:00', break: '13:00 - 14:00' };
   const myVacationDays = { available: 12, used: 8, total: 20 };
   

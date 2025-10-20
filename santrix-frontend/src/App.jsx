@@ -12,8 +12,8 @@ import NotFound from './modules/shared/NotFound';
 // MÓDULOS DE TALENTO HUMANO (CRUD)
 import EmployeeListView from './modules/Employees/views/EmployeeListView';
 import EmployeeFormView from './modules/Employees/views/EmployeeFormView';
-import ParticipantListView from './modules/Participants/views/ParticipantListView';
-import ParticipantFormView from './modules/Participants/views/ParticipantFormView.jsx';
+import PractitionerListView from './modules/practitioners/views/PractitionerListView';
+import PractitionerFormView from './modules/practitioners/views/PractitionerFormView';
 
 // MÓDULOS DE GESTIÓN OPERATIVA
 import PerformanceView from './modules/Performance/views/PerformanceView';
@@ -66,10 +66,10 @@ export default function App() {
       <Route path="/empleados/nuevo" element={<ProtectedLayout><EmployeeFormView /></ProtectedLayout>} />
       <Route path="/empleados/editar/:id" element={<ProtectedLayout><EmployeeFormView isEdit={true} /></ProtectedLayout>} />
       
-      {/* Participantes */}
-      <Route path="/participantes" element={<ProtectedLayout><ParticipantListView /></ProtectedLayout>} />
-      <Route path="/participantes/nuevo" element={<ProtectedLayout><ParticipantFormView /></ProtectedLayout>} />
-      <Route path="/participantes/editar/:id" element={<ProtectedLayout><ParticipantFormView isEdit={true} /></ProtectedLayout>} />
+      {/* Practitioners */}
+      <Route path="/practitioners" element={<ProtectedLayout><PractitionerListView /></ProtectedLayout>} />
+      <Route path="/practitioners/nuevo" element={<ProtectedLayout><PractitionerFormView /></ProtectedLayout>} />
+      <Route path="/practitioners/editar/:id" element={<ProtectedLayout><PractitionerFormView isEdit={true} /></ProtectedLayout>} />
       
       {/* MÓDULOS DE GESTIÓN OPERATIVA */}
       <Route path="/desempeno" element={<ProtectedLayout><PerformanceView /></ProtectedLayout>} />

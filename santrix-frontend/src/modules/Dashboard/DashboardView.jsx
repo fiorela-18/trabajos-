@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdminDashboard from './AdminDashboard';
-import ParticipantDashboard from './ParticipantDashboard';
+import PractitionerDashboard from './PractitionerDashboard';
 
 export default function DashboardView() {
   const [userRole, setUserRole] = useState('');
@@ -14,5 +14,5 @@ export default function DashboardView() {
     return <AdminDashboard />;
   }
 
-  return <ParticipantDashboard />;
+  return <PractitionerDashboard />;
 }

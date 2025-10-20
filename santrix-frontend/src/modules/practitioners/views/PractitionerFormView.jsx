@@ -6,13 +6,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FiSave, FiArrowLeft } from 'react-icons/fi';
 
-// Datos de simulación para carga en modo edición
-const mockParticipantData = {
-    101: { name: 'Laura Mendoza', role: 'Consultor Externo', project: 'Modernización IT', contractDate: '2024-03-10', description: 'Consultora experta en migración de servicios en la nube.' },
-    102: { name: 'Jorge Castro', role: 'Pasante', project: 'Marketing Digital', contractDate: '2024-06-01', description: 'Pasante enfocado en análisis de datos de redes sociales.' },
+// Mock data for edit mode
+const mockPractitionerData = {
+    101: { name: 'Laura Mendoza', role: 'External Consultant', project: 'IT Modernization', contractDate: '2024-03-10', description: 'Expert consultant in cloud services migration.' },
+    102: { name: 'Jorge Castro', role: 'Intern', project: 'Digital Marketing', contractDate: '2024-06-01', description: 'Intern focused on social media data analysis.' },
 };
 
-export default function ParticipantFormView({ isEdit = false }) { 
+export default function PractitionerFormView({ isEdit = false }) { 
   const { id } = useParams();
   const navigate = useNavigate();
   const toast = useToast();
@@ -26,21 +26,19 @@ export default function ParticipantFormView({ isEdit = false }) {
   });
   const [isLoading, setIsLoading] = useState(false);
   
-  // Efecto para cargar datos si estamos en modo edición
+  // Effect to load data if in edit mode
   useEffect(() => {
     if (isEdit && id) {
-      if (mockParticipantData[id]) {
-        setFormData(mockParticipantData[id]);
+      if (mockPractitionerData[id]) {
+        setFormData(mockPractitionerData[id]);
       } else {
         toast({
-          title: 'Error de Carga',
-          description: `Participante con ID ${id} no encontrado.`,
+          title: 'Load Error',
+          description: `Practitioner with ID ${id} not found.`,
           status: 'error',
           duration: 3000,
           isClosable: true,
         });
-        // Si la ruta ya está integrada, redirigimos, si no, solo mostramos el error
-        // navigate('/participantes', { replace: true }); 
       }
     }
   }, [isEdit, id, navigate, toast]);
@@ -56,22 +54,21 @@ export default function ParticipantFormView({ isEdit = false }) {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulación de envío
+    // Simulated submission
     setTimeout(() => {
       setIsLoading(false);
       
-      const action = isEdit ? 'Actualizado' : 'Creado';
+      const action = isEdit ? 'Updated' : 'Created';
       
       toast({
-        title: `Participante ${action}.`,
-        description: `El participante ${formData.name} ha sido ${action.toLowerCase()} con éxito.`,
+        title: `Practitioner ${action}.`,
+        description: `Practitioner ${formData.name} has been ${action.toLowerCase()} successfully.`,
         status: 'success',
         duration: 3000,
         isClosable: true,
       });
 
-      // Ya que App.jsx ya tiene la ruta, podemos navegar.
-      navigate('/participantes', { replace: true });
+      navigate('/practitioners', { replace: true });
     }, 1500);
   };
 
@@ -81,12 +78,12 @@ export default function ParticipantFormView({ isEdit = false }) {
         <Button 
           leftIcon={<FiArrowLeft />} 
           variant="ghost" 
-          onClick={() => navigate('/participantes')} // Navegación de vuelta
+          onClick={() => navigate('/practitioners')}
         >
-          Volver a la Lista
+          Back to List
         </Button>
         <Heading size="lg" ml={4}>
-          {isEdit ? `Editar Participante (ID: ${id})` : 'Registrar Nuevo Participante'} 
+          {isEdit ? `Edit Practitioner (ID: ${id})` : 'Register New Practitioner'} 
         </Heading>
       </Flex>
 
@@ -102,41 +99,41 @@ export default function ParticipantFormView({ isEdit = false }) {
           <VStack spacing={6} align="stretch">
             
             <FormControl isRequired>
-              <FormLabel>Nombre Completo</FormLabel>
+              <FormLabel>Full Name</FormLabel>
               <Input 
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Ej: Laura Mendoza"
+                placeholder="Ex: Laura Mendoza"
               />
             </FormControl>
 
             <FormControl isRequired>
-              <FormLabel>Rol o Puesto</FormLabel>
+              <FormLabel>Role or Position</FormLabel>
               <Input 
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                placeholder="Ej: Consultor Externo"
+                placeholder="Ex: External Consultant"
               />
             </FormControl>
 
             <FormControl isRequired>
-              <FormLabel>Proyecto Asignado</FormLabel>
+              <FormLabel>Assigned Project</FormLabel>
               <Select 
                 name="project"
                 value={formData.project}
                 onChange={handleChange}
-                placeholder="Selecciona un proyecto"
+                placeholder="Select a project"
               >
-                <option value="Modernización IT">Modernización IT</option>
-                <option value="Marketing Digital">Marketing Digital</option>
-                <option value="Diseño Web">Diseño Web</option>
+                <option value="IT Modernization">IT Modernization</option>
+                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="Web Design">Web Design</option>
               </Select>
             </FormControl>
             
             <FormControl isRequired>
-              <FormLabel>Fecha de Contrato</FormLabel>
+              <FormLabel>Contract Date</FormLabel>
               <Input 
                 name="contractDate"
                 type="date"
@@ -146,12 +143,12 @@ export default function ParticipantFormView({ isEdit = false }) {
             </FormControl>
 
             <FormControl>
-              <FormLabel>Descripción</FormLabel>
+              <FormLabel>Description</FormLabel>
               <Textarea 
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                placeholder="Detalle de las responsabilidades..."
+                placeholder="Detail of responsibilities..."
               />
             </FormControl>
             
@@ -162,7 +159,7 @@ export default function ParticipantFormView({ isEdit = false }) {
                 leftIcon={<FiSave />}
                 isLoading={isLoading}
               >
-                {isEdit ? 'Actualizar Participante' : 'Guardar Participante'}
+                {isEdit ? 'Update Practitioner' : 'Save Practitioner'}
               </Button>
             </Flex>
           </VStack>

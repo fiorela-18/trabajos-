@@ -4,9 +4,11 @@ import {
 } from '@chakra-ui/react';
 import { FiSearch, FiBell, FiUser, FiSettings } from 'react-icons/fi';
 
-// Colores definidos en el DashboardLayout
-const PRIMARY_COLOR = "teal.500"; 
-const HEADER_BG = "white"; 
+// Nueva paleta de colores
+const AZUL_MARINO = "#0A192F";
+const ROJO_VINO = "#800020";
+const GRIS = "#B0B0B0";
+const BLANCO = "#FFFFFF";
 
 /**
  * Header (Barra Superior) - Contiene la Búsqueda y Perfil.
@@ -18,28 +20,30 @@ export default function Header({ userEmail }) {
         <Flex 
             w="full" 
             h="70px" 
-            bg={HEADER_BG}
+            bg={BLANCO}
             align="center"
             justify="space-between"
             p={4}
-            borderBottom="1px solid #E2E8F0"
+            borderBottom={`1px solid ${GRIS}`}
+            boxShadow="sm"
         >
             {/* Título Principal */}
-            <Text fontSize="lg" fontWeight="extrabold" color="#2C3E50">
-                Recursos humanos de Santrix
+            <Text fontSize="lg" fontWeight="extrabold" color={AZUL_MARINO}>
+                Gestión empresarial SANTRIX
             </Text>
 
             <Flex align="center">
                 {/* Barra de Búsqueda */}
                 <InputGroup w="300px" mr={4}>
-                    <InputLeftElement pointerEvents="none" children={<FiSearch color="gray.300" />} />
+                    <InputLeftElement pointerEvents="none" children={<FiSearch color={GRIS} />} />
                     <Input 
                         type="text" 
                         placeholder="Buscar empleados, proyectos..." 
                         rounded="lg" 
                         bg="gray.50" 
-                        border="none"
-                        _focus={{ ring: 1, ringColor: PRIMARY_COLOR }}
+                        border={`1px solid ${GRIS}`}
+                        _focus={{ borderColor: ROJO_VINO, boxShadow: `0 0 0 1px ${ROJO_VINO}` }}
+                        color={AZUL_MARINO}
                     />
                 </InputGroup>
 
@@ -50,12 +54,12 @@ export default function Header({ userEmail }) {
                     size="md"
                     variant="ghost"
                     rounded="full"
-                    color="gray.600"
+                    color={AZUL_MARINO}
                     position="relative"
                     mr={3}
-                    _hover={{ bg: 'gray.100' }}
+                    _hover={{ bg: 'rgba(128, 0, 32, 0.1)', color: ROJO_VINO }}
                 >
-                    <Box as="span" position="absolute" top="8px" right="8px" h="8px" w="8px" bg="red.500" rounded="full" fontSize="xs" border="1px solid white"/>
+                    <Box as="span" position="absolute" top="8px" right="8px" h="8px" w="8px" bg={ROJO_VINO} rounded="full" fontSize="xs" border={`1px solid ${BLANCO}`}/>
                 </IconButton>
 
                 {/* Perfil (Solo opciones de Configuración/Perfil) */}
@@ -64,15 +68,22 @@ export default function Header({ userEmail }) {
                         icon={<FiUser />} 
                         aria-label="Perfil de Usuario"
                         size="lg"
-                        bg="#2C3E50"
-                        color="white"
+                        bg={AZUL_MARINO}
+                        color={BLANCO}
                         rounded="full"
-                        _hover={{ bg: PRIMARY_COLOR }}
+                        _hover={{ bg: ROJO_VINO }}
+                        transition="all 0.2s"
                     />
-                    <MenuList>
-                        <MenuItem fontWeight="bold">{userEmail}</MenuItem>
-                        <MenuItem icon={<FiUser />}>Ver Perfil</MenuItem>
-                        <MenuItem icon={<FiSettings />}>Configuración</MenuItem>
+                    <MenuList border={`1px solid ${GRIS}`} boxShadow="lg">
+                        <MenuItem fontWeight="bold" color={AZUL_MARINO} _hover={{ bg: 'rgba(128, 0, 32, 0.1)' }}>
+                            {userEmail}
+                        </MenuItem>
+                        <MenuItem icon={<FiUser />} color={AZUL_MARINO} _hover={{ bg: 'rgba(128, 0, 32, 0.1)' }}>
+                            Ver Perfil
+                        </MenuItem>
+                        <MenuItem icon={<FiSettings />} color={AZUL_MARINO} _hover={{ bg: 'rgba(128, 0, 32, 0.1)' }}>
+                            Configuración
+                        </MenuItem>
                         {/* Nota: La lógica de Cerrar Sesión va en el Sidebar */}
                     </MenuList>
                 </Menu>
