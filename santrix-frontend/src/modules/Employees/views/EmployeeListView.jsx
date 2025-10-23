@@ -14,6 +14,15 @@ import {
   FiEdit, FiTrash2, FiEye, FiMail, FiPhone, FiUsers
 } from 'react-icons/fi';
 
+// Colores corporativos
+const COLORS = {
+  primary: '#0A192F',    // Azul Marino
+  accent: '#800020',     // Rojo Vino
+  gray: '#B0B0B0',       // Gris
+  white: '#FFFFFF',      // Blanco
+  lightGray: '#F7FAFC',  // Gris muy claro para fondos
+};
+
 // Datos simulados más completos
 const initialEmployees = [
   { 
@@ -127,7 +136,6 @@ export default function EmployeeListView() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
-  const [viewMode, setViewMode] = useState('table'); // 'table' o 'cards'
   
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
@@ -203,26 +211,32 @@ export default function EmployeeListView() {
   };
 
   return (
-    <Box p={6} bg="gray.50" minH="100vh">
+    <Box p={6} bg={COLORS.lightGray} minH="100vh">
       {/* Header */}
       <Flex justify="space-between" align="center" mb={8}>
         <Box>
-          <Heading size="xl" color="gray.800">Gestión de Empleados</Heading>
-          <Text color="gray.600" mt={1}>Administra todo el personal de la organización</Text>
+          <Heading size="xl" color={COLORS.primary}>Gestión de Empleados</Heading>
+          <Text color={COLORS.gray} mt={1}>Administra todo el personal de la organización</Text>
         </Box>
         <HStack>
           <Button 
             leftIcon={<FiDownload />} 
-            colorScheme="blue"
+            bg={COLORS.white}
+            color={COLORS.primary}
+            border="1px"
+            borderColor={COLORS.primary}
             variant="outline"
             onClick={handleExport}
+            _hover={{ bg: COLORS.primary, color: COLORS.white }}
           >
             Exportar
           </Button>
           <Button 
             leftIcon={<FiPlus />} 
-            colorScheme="teal"
+            bg={COLORS.accent}
+            color={COLORS.white}
             onClick={() => navigate('/empleados/nuevo')}
+            _hover={{ bg: COLORS.accent, opacity: 0.9 }}
           >
             Nuevo Empleado
           </Button>
@@ -231,58 +245,60 @@ export default function EmployeeListView() {
 
       {/* Estadísticas */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} mb={8}>
-        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="teal.500">
+        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor={COLORS.primary} bg={COLORS.white}>
           <CardBody>
             <HStack justify="space-between" mb={2}>
-              <Icon as={FiUsers} w={8} h={8} color="teal.500" />
-              <Text fontSize="3xl" fontWeight="bold">{stats.total}</Text>
+              <Icon as={FiUsers} w={8} h={8} color={COLORS.primary} />
+              <Text fontSize="3xl" fontWeight="bold" color={COLORS.primary}>{stats.total}</Text>
             </HStack>
-            <Text fontSize="sm" color="gray.600">Total Empleados</Text>
+            <Text fontSize="sm" color={COLORS.gray}>Total Empleados</Text>
           </CardBody>
         </Card>
 
-        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="green.500">
+        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="green.500" bg={COLORS.white}>
           <CardBody>
             <HStack justify="space-between" mb={2}>
-              <Badge colorScheme="green" fontSize="lg" px={3} py={1}>Activos</Badge>
-              <Text fontSize="3xl" fontWeight="bold">{stats.active}</Text>
+              <Badge bg="green.500" color={COLORS.white} fontSize="lg" px={3} py={1}>Activos</Badge>
+              <Text fontSize="3xl" fontWeight="bold" color={COLORS.primary}>{stats.active}</Text>
             </HStack>
-            <Text fontSize="sm" color="gray.600">{((stats.active/stats.total)*100).toFixed(0)}% del total</Text>
+            <Text fontSize="sm" color={COLORS.gray}>{((stats.active/stats.total)*100).toFixed(0)}% del total</Text>
           </CardBody>
         </Card>
 
-        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="orange.500">
+        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="orange.500" bg={COLORS.white}>
           <CardBody>
             <HStack justify="space-between" mb={2}>
-              <Badge colorScheme="orange" fontSize="lg" px={3} py={1}>Ausentes</Badge>
-              <Text fontSize="3xl" fontWeight="bold">{stats.absent}</Text>
+              <Badge bg="orange.500" color={COLORS.white} fontSize="lg" px={3} py={1}>Ausentes</Badge>
+              <Text fontSize="3xl" fontWeight="bold" color={COLORS.primary}>{stats.absent}</Text>
             </HStack>
-            <Text fontSize="sm" color="gray.600">Temporalmente fuera</Text>
+            <Text fontSize="sm" color={COLORS.gray}>Temporalmente fuera</Text>
           </CardBody>
         </Card>
 
-        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor="red.500">
+        <Card shadow="lg" borderRadius="xl" borderTop="4px" borderColor={COLORS.accent} bg={COLORS.white}>
           <CardBody>
             <HStack justify="space-between" mb={2}>
-              <Badge colorScheme="red" fontSize="lg" px={3} py={1}>Inactivos</Badge>
-              <Text fontSize="3xl" fontWeight="bold">{stats.inactive}</Text>
+              <Badge bg={COLORS.accent} color={COLORS.white} fontSize="lg" px={3} py={1}>Inactivos</Badge>
+              <Text fontSize="3xl" fontWeight="bold" color={COLORS.primary}>{stats.inactive}</Text>
             </HStack>
-            <Text fontSize="sm" color="gray.600">Requieren atención</Text>
+            <Text fontSize="sm" color={COLORS.gray}>Requieren atención</Text>
           </CardBody>
         </Card>
       </SimpleGrid>
 
       {/* Filtros y búsqueda */}
-      <Box p={6} shadow="lg" borderRadius="xl" bg="white" mb={6}>
+      <Box p={6} shadow="lg" borderRadius="xl" bg={COLORS.white} mb={6}>
         <Flex gap={4} direction={{ base: 'column', md: 'row' }}>
           <InputGroup flex="2">
             <InputLeftElement pointerEvents="none">
-              <Icon as={FiSearch} color="gray.400" />
+              <Icon as={FiSearch} color={COLORS.gray} />
             </InputLeftElement>
             <Input 
               placeholder="Buscar por nombre, email o cargo..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              borderColor={COLORS.gray}
+              _focus={{ borderColor: COLORS.primary }}
             />
           </InputGroup>
 
@@ -291,6 +307,8 @@ export default function EmployeeListView() {
             flex="1"
             value={filterDepartment}
             onChange={(e) => setFilterDepartment(e.target.value)}
+            borderColor={COLORS.gray}
+            _focus={{ borderColor: COLORS.primary }}
           >
             <option value="Tecnología">Tecnología</option>
             <option value="Diseño">Diseño</option>
@@ -305,6 +323,8 @@ export default function EmployeeListView() {
             flex="1"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
+            borderColor={COLORS.gray}
+            _focus={{ borderColor: COLORS.primary }}
           >
             <option value="Activo">Activo</option>
             <option value="Ausente">Ausente</option>
@@ -313,22 +333,26 @@ export default function EmployeeListView() {
 
           {(searchTerm || filterDepartment || filterStatus) && (
             <Button 
-              colorScheme="gray" 
+              bg={COLORS.white}
+              color={COLORS.gray}
+              border="1px"
+              borderColor={COLORS.gray}
               variant="outline"
               onClick={() => {
                 setSearchTerm('');
                 setFilterDepartment('');
                 setFilterStatus('');
               }}
+              _hover={{ bg: COLORS.gray, color: COLORS.white }}
             >
               Limpiar
             </Button>
           )}
         </Flex>
 
-        <Flex justify="space-between" align="center" mt={4} pt={4} borderTop="1px" borderColor="gray.100">
-          <Text fontSize="sm" color="gray.600">
-            Mostrando <strong>{filteredEmployees.length}</strong> de <strong>{employees.length}</strong> empleados
+        <Flex justify="space-between" align="center" mt={4} pt={4} borderTop="1px" borderColor={COLORS.lightGray}>
+          <Text fontSize="sm" color={COLORS.gray}>
+            Mostrando <Text as="span" fontWeight="bold" color={COLORS.primary}>{filteredEmployees.length}</Text> de <Text as="span" fontWeight="bold" color={COLORS.primary}>{employees.length}</Text> empleados
           </Text>
         </Flex>
       </Box>
@@ -337,20 +361,21 @@ export default function EmployeeListView() {
       <TableContainer 
         borderWidth={1} 
         borderRadius="xl" 
-        bg="white" 
+        bg={COLORS.white} 
         shadow="lg"
         p={4}
+        borderColor={COLORS.lightGray}
       >
         <Table variant="simple">
           <Thead>
-            <Tr bg="gray.50">
-              <Th>Empleado</Th>
-              <Th>Contacto</Th>
-              <Th>Cargo</Th>
-              <Th>Departamento</Th>
-              <Th>Estado</Th>
-              <Th>Fecha de Ingreso</Th>
-              <Th textAlign="center">Acciones</Th>
+            <Tr bg={COLORS.lightGray}>
+              <Th color={COLORS.primary}>Empleado</Th>
+              <Th color={COLORS.primary}>Contacto</Th>
+              <Th color={COLORS.primary}>Cargo</Th>
+              <Th color={COLORS.primary}>Departamento</Th>
+              <Th color={COLORS.primary}>Estado</Th>
+              <Th color={COLORS.primary}>Fecha de Ingreso</Th>
+              <Th textAlign="center" color={COLORS.primary}>Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -358,39 +383,44 @@ export default function EmployeeListView() {
               <Tr>
                 <Td colSpan={7} textAlign="center" py={8}>
                   <VStack spacing={2}>
-                    <Icon as={FiUsers} w={12} h={12} color="gray.300" />
-                    <Text color="gray.500">No se encontraron empleados</Text>
-                    <Text fontSize="sm" color="gray.400">Intenta ajustar los filtros de búsqueda</Text>
+                    <Icon as={FiUsers} w={12} h={12} color={COLORS.gray} />
+                    <Text color={COLORS.gray}>No se encontraron empleados</Text>
+                    <Text fontSize="sm" color={COLORS.gray}>Intenta ajustar los filtros de búsqueda</Text>
                   </VStack>
                 </Td>
               </Tr>
             ) : (
               filteredEmployees.map((emp) => (
-                <Tr key={emp.id} _hover={{ bg: 'gray.50' }}>
+                <Tr key={emp.id} _hover={{ bg: COLORS.lightGray }}>
                   <Td>
                     <HStack>
-                      <Avatar size="sm" name={emp.name} bg="teal.500" />
+                      <Avatar size="sm" name={emp.name} bg={COLORS.primary} />
                       <Box>
-                        <Text fontWeight="semibold" fontSize="sm">{emp.name}</Text>
-                        <Text fontSize="xs" color="gray.500">{emp.location}</Text>
+                        <Text fontWeight="semibold" fontSize="sm" color={COLORS.primary}>{emp.name}</Text>
+                        <Text fontSize="xs" color={COLORS.gray}>{emp.location}</Text>
                       </Box>
                     </HStack>
                   </Td>
                   <Td>
                     <VStack align="start" spacing={1}>
                       <HStack fontSize="xs">
-                        <Icon as={FiMail} color="gray.400" />
-                        <Text color="blue.600" cursor="pointer" _hover={{ textDecoration: 'underline' }} onClick={() => handleSendEmail(emp.email)}>
+                        <Icon as={FiMail} color={COLORS.gray} />
+                        <Text 
+                          color={COLORS.accent} 
+                          cursor="pointer" 
+                          _hover={{ textDecoration: 'underline' }} 
+                          onClick={() => handleSendEmail(emp.email)}
+                        >
                           {emp.email}
                         </Text>
                       </HStack>
                       <HStack fontSize="xs">
-                        <Icon as={FiPhone} color="gray.400" />
-                        <Text color="gray.600">{emp.phone}</Text>
+                        <Icon as={FiPhone} color={COLORS.gray} />
+                        <Text color={COLORS.gray}>{emp.phone}</Text>
                       </HStack>
                     </VStack>
                   </Td>
-                  <Td fontSize="sm">{emp.position}</Td>
+                  <Td fontSize="sm" color={COLORS.primary}>{emp.position}</Td>
                   <Td>
                     <Badge colorScheme={departmentColor[emp.department]} fontSize="xs">
                       {emp.department}
@@ -401,7 +431,7 @@ export default function EmployeeListView() {
                       {emp.status}
                     </Tag>
                   </Td>
-                  <Td fontSize="sm" color="gray.600">{emp.hireDate}</Td>
+                  <Td fontSize="sm" color={COLORS.gray}>{emp.hireDate}</Td>
                   <Td>
                     <HStack justify="center">
                       <Menu>
@@ -410,6 +440,8 @@ export default function EmployeeListView() {
                           icon={<FiMoreVertical />}
                           variant="ghost"
                           size="sm"
+                          color={COLORS.primary}
+                          _hover={{ bg: COLORS.lightGray }}
                         />
                         <MenuList>
                           <MenuItem icon={<FiEye />} onClick={() => handleViewDetails(emp.id)}>
@@ -421,7 +453,11 @@ export default function EmployeeListView() {
                           <MenuItem icon={<FiMail />} onClick={() => handleSendEmail(emp.email)}>
                             Enviar Email
                           </MenuItem>
-                          <MenuItem icon={<FiTrash2 />} color="red.500" onClick={() => handleDeleteClick(emp.id)}>
+                          <MenuItem 
+                            icon={<FiTrash2 />} 
+                            color={COLORS.accent} 
+                            onClick={() => handleDeleteClick(emp.id)}
+                          >
                             Eliminar
                           </MenuItem>
                         </MenuList>
@@ -443,19 +479,33 @@ export default function EmployeeListView() {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            <AlertDialogHeader fontSize="lg" fontWeight="bold" color={COLORS.primary}>
               Eliminar Empleado
             </AlertDialogHeader>
 
-            <AlertDialogBody>
+            <AlertDialogBody color={COLORS.primary}>
               ¿Estás seguro de eliminar este empleado? Esta acción no se puede deshacer.
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button 
+                ref={cancelRef} 
+                onClick={onClose}
+                bg={COLORS.white}
+                color={COLORS.gray}
+                border="1px"
+                borderColor={COLORS.gray}
+                _hover={{ bg: COLORS.gray, color: COLORS.white }}
+              >
                 Cancelar
               </Button>
-              <Button colorScheme="red" onClick={handleConfirmDelete} ml={3}>
+              <Button 
+                bg={COLORS.accent} 
+                color={COLORS.white}
+                onClick={handleConfirmDelete} 
+                ml={3}
+                _hover={{ bg: COLORS.accent, opacity: 0.9 }}
+              >
                 Eliminar
               </Button>
             </AlertDialogFooter>

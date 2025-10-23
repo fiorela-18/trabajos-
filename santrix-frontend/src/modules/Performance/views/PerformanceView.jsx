@@ -468,5 +468,9 @@ export default function PerformanceView() {
 
   const isAdmin = userRole === 'admin';
 
-  return isAdmin ? <AdminPerformanceSection /> : <ParticipantPerformanceSection />;
+  return (
+    <Box p={6} bg="gray.50" minH="100vh">
+      {isAdmin ? <AdminPerformanceSection /> : <ParticipantPerformanceSection />}
+    </Box>
+  );
 }

@@ -6,25 +6,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiLogIn, FiUserPlus } from 'react-icons/fi';
 
-// Paleta de Colores Matrix
-const MATRIX_GREEN = "#fc4e2fcc";
-const MATRIX_DARK = "#000000";
-const CARD_BG = "rgba(10, 10, 10, 0.9)";
+// 🎨 Paleta de Colores Vino Tinto Realista
+const WINE_RED = '#800020';     // Vino tinto oscuro (principal)
+const WINE_LIGHT = "#0A192F";   // Vino más claro, usado para reflejos
+const MATRIX_DARK = "#0b0002";  // Fondo con matiz cálido (no negro puro)
+const CARD_BG = "rgba(20, 0, 5, 0.9)"; // Fondo de tarjeta con leve tinte vino
 const FONT_SIZE = 16;
 
-// Estilos para el efecto de GLITCH
+
+// 🔮 Estilos para el efecto de GLITCH (actualizado al color vino tinto)
 const matrixStyles = `
     @keyframes text-glitch {
-        0% { text-shadow: 0.05em 0 0 ${MATRIX_GREEN}, -0.05em -0.025em 0 hsla(120, 78%, 49%, 0.58); }
-        15% { text-shadow: 0 0.025em 0 ${MATRIX_GREEN}, -0.025em 0 0 #15ff00e1; }
-        30% { text-shadow: -0.05em -0.015em 0 ${MATRIX_GREEN}, 0.025em 0 0 #00ff0db3; }
-        50% { text-shadow: 0 0 0 ${MATRIX_GREEN}, 0 0 0 rgba(0, 255, 42, 0.7); }
-        70% { text-shadow: 0.025em 0.05em 0 ${MATRIX_GREEN}, -0.05em -0.05em 0 #2cdb2cd3; }
-        100% { text-shadow: 0 0 0 ${MATRIX_GREEN}, 0 0 0 #00ff22b3; }
+        0% { text-shadow: 0.05em 0 0 ${WINE_RED}, -0.05em -0.025em 0 ${WINE_LIGHT}; }
+        15% { text-shadow: 0 0.025em 0 ${WINE_RED}, -0.025em 0 0 ${WINE_LIGHT}; }
+        30% { text-shadow: -0.05em -0.015em 0 ${WINE_RED}, 0.025em 0 0 ${WINE_LIGHT}; }
+        50% { text-shadow: 0 0 0 ${WINE_RED}, 0 0 0 ${WINE_LIGHT}; }
+        70% { text-shadow: 0.025em 0.05em 0 ${WINE_RED}, -0.05em -0.05em 0 ${WINE_LIGHT}; }
+        100% { text-shadow: 0 0 0 ${WINE_RED}, 0 0 0 ${WINE_LIGHT}; }
     }
     .glitch-text {
         animation: text-glitch 5s steps(20) infinite;
-        text-shadow: 0 0 5px ${MATRIX_GREEN};
+        text-shadow: 0 0 5px ${WINE_RED};
     }
 
     #matrix-canvas {
@@ -42,7 +44,6 @@ export default function LoginView() {
     const navigate = useNavigate(); 
     const toast = useToast();
     const { isOpen, onOpen, onClose } = useDisclosure(); 
-    
     const canvasRef = useRef(null);
 
     const [email, setEmail] = useState('');
@@ -79,7 +80,7 @@ export default function LoginView() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; 
             ctx.fillRect(0, 0, width, height);
             
-            ctx.fillStyle = MATRIX_GREEN;
+            ctx.fillStyle = WINE_RED;
             ctx.font = `${FONT_SIZE}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
@@ -129,13 +130,12 @@ export default function LoginView() {
 
             let expectedRole = null;
             let success = false;
-            
-            // Credenciales de prueba - CAMBIADO: participant → practitioner
+
             if (email === 'admin@santrix.com' && password === '12345' && role === 'admin') {
                 expectedRole = 'admin';
                 success = true;
-            } else if (email === 'user@santrix.com' && password === '12345' && role === 'practitioner') { // CAMBIADO
-                expectedRole = 'practitioner'; // CAMBIADO
+            } else if (email === 'user@santrix.com' && password === '12345' && role === 'practitioner') {
+                expectedRole = 'practitioner';
                 success = true;
             }
 
@@ -144,13 +144,25 @@ export default function LoginView() {
                 localStorage.setItem('user_role', expectedRole);
                 localStorage.setItem('user_email', email); 
                 
-                toast({ title: `Bienvenido, ${expectedRole.toUpperCase()}.`, description: 'Inicio de sesión exitoso. Recargando la Matriz...', status: 'success', duration: 1500, isClosable: true });
+                toast({ 
+                    title: `Bienvenido, ${expectedRole.toUpperCase()}.`, 
+                    description: 'Inicio de sesión exitoso.', 
+                    status: 'success', 
+                    duration: 1500, 
+                    isClosable: true 
+                });
                 
                 setTimeout(() => {
                     window.location.href = '/dashboard'; 
                 }, 1500); 
             } else {
-                toast({ title: 'Error de acceso.', description: 'Credenciales o rol incorrectos.', status: 'error', duration: 3000, isClosable: true });
+                toast({ 
+                    title: 'Error de acceso.', 
+                    description: 'Credenciales o rol incorrectos.', 
+                    status: 'error', 
+                    duration: 3000, 
+                    isClosable: true 
+                });
             }
         }, 1000); 
     };
@@ -175,7 +187,7 @@ export default function LoginView() {
 
             toast({
                 title: 'Registro y Acceso Exitoso.',
-                description: `Simulación de registro como ${quickRole.toUpperCase()}. Recargando la Matriz...`,
+                description: `Simulación de registro como ${quickRole.toUpperCase()}.`,
                 status: 'success',
                 duration: 1500,
                 isClosable: true,
@@ -197,15 +209,14 @@ export default function LoginView() {
             position="relative"
         >
             <style>{matrixStyles}</style>
-            
             <canvas id="matrix-canvas" ref={canvasRef}></canvas>
 
             <Box 
                 maxW={'lg'} 
                 w={'full'}
                 bg={CARD_BG}
-                boxShadow={isHovered ? `0 0 30px 10px ${MATRIX_GREEN}` : `0 0 10px 3px ${MATRIX_GREEN}`} 
-                border={`1px solid ${MATRIX_GREEN}`}
+                boxShadow={isHovered ? `0 0 30px 10px ${WINE_RED}` : `0 0 10px 3px ${WINE_RED}`} 
+                border={`1px solid ${WINE_RED}`}
                 rounded={'3xl'} 
                 p={{ base: 8, md: 12 }} 
                 my={12}
@@ -219,26 +230,24 @@ export default function LoginView() {
                     <Heading 
                         fontSize={'4xl'} 
                         textAlign={'center'} 
-                        color={MATRIX_GREEN} 
+                        color={WINE_RED} 
                         mb={2}
                         className="glitch-text"
                         fontFamily="monospace" 
                     >
-                        // SISTEMA DE GESTION EMPRESARIAL 
-                                    SANTRIX  //
+                        // SISTEMA DE GESTIÓN EMPRESARIAL SANTRIX //
                     </Heading>
-                    <Text fontSize={'lg'} color={MATRIX_GREEN} mb={4} textAlign="center">
-                       Bienvenido a santrix. por favor ingresa tus Credenciales para continuar.
+                    <Text fontSize={'lg'} color={WINE_RED} mb={4} textAlign="center">
+                        Bienvenido a Santrix. Ingresa tus credenciales para continuar.
                     </Text>
                     
                     <form onSubmit={handleSubmit} style={{ width: '100%' }}>
                         <VStack spacing={6}> 
                             <FormControl id="email" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={MATRIX_GREEN}>
+                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
                                     Usuario (Correo Electrónico)
                                 </FormLabel>
                                 <Input 
-                                    name="email"
                                     type="email" 
                                     placeholder="ejemplo@santrix.com"
                                     value={email}
@@ -246,14 +255,14 @@ export default function LoginView() {
                                     size="lg"
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)" 
-                                    color={MATRIX_GREEN} 
-                                    borderColor={MATRIX_GREEN}
-                                    _focus={{ borderColor: MATRIX_GREEN, boxShadow: `0 0 8px ${MATRIX_GREEN}` }}
+                                    color={WINE_RED} 
+                                    borderColor={WINE_RED}
+                                    _focus={{ borderColor: WINE_LIGHT, boxShadow: `0 0 8px ${WINE_LIGHT}` }}
                                 />
                             </FormControl>
                             
                             <FormControl id="role" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={MATRIX_GREEN}>
+                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
                                     Identidad (Selecciona tu Rol)
                                 </FormLabel>
                                 <Select 
@@ -263,26 +272,24 @@ export default function LoginView() {
                                     size="lg"
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)"
-                                    color={MATRIX_GREEN}
-                                    borderColor={MATRIX_GREEN}
-                                    _focus={{ borderColor: MATRIX_GREEN, boxShadow: `0 0 8px ${MATRIX_GREEN}` }}
+                                    color={WINE_RED}
+                                    borderColor={WINE_RED}
+                                    _focus={{ borderColor: WINE_LIGHT, boxShadow: `0 0 8px ${WINE_LIGHT}` }}
                                 >
-                                    <option value="admin" style={{ background: CARD_BG, color: MATRIX_GREEN }}>
+                                    <option value="admin" style={{ background: CARD_BG, color: WINE_RED }}>
                                         Administrador (Key: 12345)
                                     </option>
-                                    {/* CAMBIADO: participant → practitioner */}
-                                    <option value="practitioner" style={{ background: CARD_BG, color: MATRIX_GREEN }}>
+                                    <option value="practitioner" style={{ background: CARD_BG, color: WINE_RED }}>
                                         Practitioner (Key: 12345)
                                     </option>
                                 </Select>
                             </FormControl>
                             
                             <FormControl id="password" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={MATRIX_GREEN}>
+                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
                                     Contraseña (Clave de Acceso)
                                 </FormLabel>
                                 <Input 
-                                    name="password"
                                     type="password" 
                                     placeholder="12345"
                                     value={password}
@@ -290,32 +297,32 @@ export default function LoginView() {
                                     size="lg"
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)"
-                                    color={MATRIX_GREEN}
-                                    borderColor={MATRIX_GREEN}
-                                    _focus={{ borderColor: MATRIX_GREEN, boxShadow: `0 0 8px ${MATRIX_GREEN}` }}
+                                    color={WINE_RED}
+                                    borderColor={WINE_RED}
+                                    _focus={{ borderColor: WINE_LIGHT, boxShadow: `0 0 8px ${WINE_LIGHT}` }}
                                 />
                             </FormControl>
                             
                             <Button
                                 type="submit"
-                                bg={MATRIX_GREEN}
-                                color={MATRIX_DARK} 
+                                bg={WINE_RED}
+                                color="white" 
                                 size="lg"
                                 w="full"
                                 mt={6}
                                 leftIcon={<FiLogIn />}
                                 isLoading={isLoading}
-                                loadingText="Cargando realidad..."
+                                loadingText="Cargando..."
                                 fontWeight="extrabold"
-                                boxShadow={`0 0 5px ${MATRIX_GREEN}`} 
+                                boxShadow={`0 0 5px ${WINE_RED}`} 
                                 borderRadius="2xl"
                                 className="glitch-text"
                                 _hover={{ 
-                                    boxShadow: `0 0 15px 7px ${MATRIX_GREEN}, 0 0 30px 15px #f54b4b80`, 
+                                    boxShadow: `0 0 15px 7px ${WINE_RED}`, 
                                     transform: 'scale(1.02)'
                                 }}
                                 _active={{
-                                    bg: 'hsla(14, 80%, 56%, 1.00)',
+                                    bg: WINE_LIGHT,
                                 }}
                             >
                                 Iniciar Sesión 
@@ -323,15 +330,15 @@ export default function LoginView() {
                         </VStack>
                     </form>
                     
-                    <Divider borderColor={MATRIX_GREEN} opacity="0.3" />
+                    <Divider borderColor={WINE_RED} opacity="0.3" />
 
                     <Button
                         leftIcon={<FiUserPlus />}
                         w="full"
-                        color={MATRIX_GREEN}
+                        color={WINE_RED}
                         variant="link"
                         onClick={onOpen}
-                        _hover={{ textDecoration: 'underline', color: '#fc4322ff' }}
+                        _hover={{ textDecoration: 'underline', color: WINE_LIGHT }}
                         borderRadius="xl"
                         fontWeight="semibold"
                     >
@@ -343,27 +350,26 @@ export default function LoginView() {
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent rounded="xl" bg={CARD_BG} border={`1px solid ${MATRIX_GREEN}`}>
-                    <ModalHeader color={MATRIX_GREEN}>Simular Registro y Acceso</ModalHeader>
-                    <ModalCloseButton color={MATRIX_GREEN} />
+                <ModalContent rounded="xl" bg={CARD_BG} border={`1px solid ${WINE_RED}`}>
+                    <ModalHeader color={WINE_RED}>Simular Registro y Acceso</ModalHeader>
+                    <ModalCloseButton color={WINE_RED} />
                     <ModalBody>
                         <Text mb={4} color="whiteAlpha.800">
                             Selecciona la identidad con la que deseas acceder para la simulación.
                         </Text>
                         <FormControl id="quick-register-role" isRequired>
-                            <FormLabel color={MATRIX_GREEN}>Identidad de Registro</FormLabel>
+                            <FormLabel color={WINE_RED}>Identidad de Registro</FormLabel>
                             <Select 
                                 placeholder="Selecciona un rol" 
                                 value={quickRole} 
                                 onChange={(e) => setQuickRole(e.target.value)}
                                 borderRadius="lg"
                                 bg="rgba(0, 0, 0, 0.5)"
-                                color={MATRIX_GREEN}
-                                borderColor={MATRIX_GREEN}
+                                color={WINE_RED}
+                                borderColor={WINE_RED}
                             >
-                                <option value="admin" style={{ background: CARD_BG, color: MATRIX_GREEN }}>Administrador</option>
-                                {/* CAMBIADO: participant → practitioner */}
-                                <option value="practitioner" style={{ background: CARD_BG, color: MATRIX_GREEN }}>Practitioner</option>
+                                <option value="admin" style={{ background: CARD_BG, color: WINE_RED }}>Administrador</option>
+                                <option value="practitioner" style={{ background: CARD_BG, color: WINE_RED }}>Practitioner</option>
                             </Select>
                         </FormControl>
                     </ModalBody>
@@ -373,15 +379,15 @@ export default function LoginView() {
                             Cancelar 
                         </Button>
                         <Button 
-                            bg={MATRIX_GREEN}
-                            color={MATRIX_DARK}
+                            bg={WINE_RED}
+                            color="white"
                             onClick={handleQuickRegister} 
                             isLoading={isLoading}
-                            boxShadow={`0 0 5px ${MATRIX_GREEN}`}
+                            boxShadow={`0 0 5px ${WINE_RED}`}
                             rounded="lg"
                             fontWeight="extrabold"
                             _hover={{ 
-                                boxShadow: `0 0 10px ${MATRIX_GREEN}`, 
+                                boxShadow: `0 0 10px ${WINE_RED}`, 
                             }}
                         >
                             Registrar y Acceder

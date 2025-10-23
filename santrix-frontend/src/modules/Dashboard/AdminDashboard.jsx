@@ -353,18 +353,40 @@ export default function AdminDashboard() {
       </SimpleGrid>
 
       {/* Gráfico de desempeño */}
-      <Box p={6} shadow="lg" borderRadius="xl" bg={COLORS.white} mb={8}>
-        <Heading size="md" mb={4} color={COLORS.primary}>Tendencia de Desempeño General</Heading>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={performanceData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
-            <XAxis dataKey="mes" stroke={COLORS.gray} />
-            <YAxis stroke={COLORS.gray} />
-            <Tooltip />
-            <Bar dataKey="rendimiento" fill={COLORS.primary} radius={[8, 8, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </Box>
+<Box p={6} shadow="lg" borderRadius="xl" bg={COLORS.white} mb={8}>
+  <Heading size="md" mb={4} color={COLORS.primary}>
+    Tendencia de Desempeño General
+  </Heading>
+  <ResponsiveContainer width="100%" height={300}>
+    <BarChart data={performanceData}>
+      <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+      <XAxis dataKey="mes" stroke={COLORS.gray} />
+      <YAxis stroke={COLORS.gray} />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="rendimiento" radius={[8, 8, 0, 0]}>
+        {performanceData.map((_, index) => (
+          <Cell
+            key={`cell-${index}`}
+            fill={[
+              "#800020", // vino tinto
+              "#B03060", // vino claro
+              "#C75B7A", // rosa vino
+              "#D6A2AD", // rosado suave
+              "#F4D58D", // dorado pastel
+              "#9D174D", // borgoña intenso
+              "#FBBF24", // amarillo cálido
+              "#6B728E", // gris lila
+              "#4A5568", // gris oscuro
+              "#0A192F"  // azul marino corporativo
+            ][index % 10]}
+          />
+        ))}
+      </Bar>
+    </BarChart>
+  </ResponsiveContainer>
+</Box>
+
 
       {/* Tabla de empleados recientes */}
       <RecentEmployeesTable />
