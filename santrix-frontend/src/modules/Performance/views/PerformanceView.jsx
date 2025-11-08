@@ -84,12 +84,12 @@ const AdminPerformanceSection = () => {
   };
 
   return (
-    <Box p={6} bg="gray.50" minH="100vh">
+    <Box maxW="1200px" mx="auto" w="100%">
       {/* Header */}
       <Flex justify="space-between" align="center" mb={8}>
         <Box>
-          <Heading size="xl" color="gray.800">Gestión de Desempeño</Heading>
-          <Text color="gray.600" mt={1}>Monitorea y evalúa el rendimiento de todo el equipo</Text>
+          <Heading size="xl" color="gray.800" fontSize="2xl">Gestión de Desempeño</Heading>
+          <Text color="gray.600" mt={1} fontSize="md">Monitorea y evalúa el rendimiento de todo el equipo</Text>
         </Box>
         <HStack>
           <Button leftIcon={<FiCalendar />} colorScheme="teal" size="sm">
@@ -137,7 +137,7 @@ const AdminPerformanceSection = () => {
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6} mb={8}>
         {/* Tendencia mensual */}
         <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-          <Heading size="md" mb={4}>Tendencia de Desempeño General</Heading>
+          <Heading size="lg" mb={4} fontSize="lg">Tendencia de Desempeño General</Heading>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={monthlyTrend}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
@@ -157,7 +157,7 @@ const AdminPerformanceSection = () => {
 
         {/* Desempeño por departamento */}
         <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-          <Heading size="md" mb={4}>Desempeño por Departamento</Heading>
+          <Heading size="lg" mb={4} fontSize="lg">Desempeño por Departamento</Heading>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={departmentPerformance}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
@@ -180,7 +180,7 @@ const AdminPerformanceSection = () => {
       {/* Tabla de empleados */}
       <Box p={6} shadow="lg" borderRadius="xl" bg="white">
         <Flex justify="space-between" align="center" mb={4}>
-          <Heading size="md">Evaluaciones del Equipo</Heading>
+          <Heading size="lg" fontSize="lg">Evaluaciones del Equipo</Heading>
           <Button size="sm" leftIcon={<FiUsers />} colorScheme="teal" variant="outline">
             Ver Todos (125)
           </Button>
@@ -188,13 +188,13 @@ const AdminPerformanceSection = () => {
         <Table variant="simple" size="sm">
           <Thead>
             <Tr bg="gray.50">
-              <Th>Empleado</Th>
-              <Th>Cargo</Th>
-              <Th>Puntuación</Th>
-              <Th>Estado</Th>
-              <Th>Última Evaluación</Th>
-              <Th>Próxima Evaluación</Th>
-              <Th textAlign="center">Acciones</Th>
+              <Th fontSize="sm">Empleado</Th>
+              <Th fontSize="sm">Cargo</Th>
+              <Th fontSize="sm">Puntuación</Th>
+              <Th fontSize="sm">Estado</Th>
+              <Th fontSize="sm">Última Evaluación</Th>
+              <Th fontSize="sm">Próxima Evaluación</Th>
+              <Th textAlign="center" fontSize="sm">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -213,7 +213,7 @@ const AdminPerformanceSection = () => {
                       value={emp.score} 
                       size="sm" 
                       colorScheme={getScoreColor(emp.score)}
-                      width="60px"
+                      width="80px"
                       borderRadius="full"
                     />
                     <Text fontWeight="bold" fontSize="sm" color={`${getScoreColor(emp.score)}.600`}>
@@ -222,7 +222,7 @@ const AdminPerformanceSection = () => {
                   </HStack>
                 </Td>
                 <Td>
-                  <Badge colorScheme={getStatusColor(emp.status)} fontSize="xs">
+                  <Badge colorScheme={getStatusColor(emp.status)} fontSize="sm" px={2} py={1}>
                     {emp.status}
                   </Badge>
                 </Td>
@@ -230,10 +230,10 @@ const AdminPerformanceSection = () => {
                 <Td fontSize="sm" color="gray.600">{emp.nextReview}</Td>
                 <Td>
                   <HStack justify="center">
-                    <Button size="xs" leftIcon={<FiEye />} colorScheme="blue" variant="ghost">
+                    <Button size="sm" leftIcon={<FiEye />} colorScheme="blue" variant="ghost">
                       Ver
                     </Button>
-                    <Button size="xs" leftIcon={<FiEdit />} colorScheme="teal" variant="ghost">
+                    <Button size="sm" leftIcon={<FiEdit />} colorScheme="teal" variant="ghost">
                       Evaluar
                     </Button>
                   </HStack>
@@ -289,169 +289,123 @@ const ParticipantPerformanceSection = () => {
   ];
 
   return (
-    <Box p={6} bg="gray.50" minH="100vh">
-      {/* Header */}
+    <Box maxW="1200px" mx="auto" w="100%">
+      {/* Header - Exactamente igual que admin */}
       <Flex justify="space-between" align="center" mb={8}>
         <Box>
-          <Heading size="xl" color="gray.800">Mi Desempeño</Heading>
-          <Text color="gray.600" mt={1}>Revisa tu progreso, objetivos y feedback recibido</Text>
+          <Heading size="xl" color="gray.800" fontSize="2xl">Mi Desempeño</Heading>
+          <Text color="gray.600" mt={1} fontSize="md">Revisa tu progreso, objetivos y feedback recibido</Text>
         </Box>
-        <Button leftIcon={<FiStar />} colorScheme="teal">
+        <Button leftIcon={<FiStar />} colorScheme="teal" size="sm">
           Auto-evaluación
         </Button>
       </Flex>
 
-      {/* Resumen de mi desempeño */}
-      <Box p={6} shadow="lg" borderRadius="xl" bg="white" mb={8}>
-        <Flex justify="space-between" align="center" mb={6}>
-          <Box>
-            <Text fontSize="sm" color="gray.600" mb={1}>Tu Puntuación Actual</Text>
-            <Heading size="2xl" color="teal.600">{myPerformance.currentScore}%</Heading>
-            <HStack mt={2}>
-              <Badge colorScheme="green" fontSize="sm">
-                ↑ +{myPerformance.currentScore - myPerformance.lastScore}% vs última evaluación
-              </Badge>
-            </HStack>
-          </Box>
-          <VStack align="end" spacing={2}>
-            <Text fontSize="sm" color="gray.600">Última evaluación: <strong>{myPerformance.evaluationDate}</strong></Text>
-            <Text fontSize="sm" color="gray.600">Próxima evaluación: <strong>{myPerformance.nextEvaluation}</strong></Text>
-            <Badge colorScheme="purple" fontSize="sm">Desempeño Excelente</Badge>
-          </VStack>
+      {/* Métricas Generales - Mismo grid que admin */}
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} mb={8}>
+        <MetricCard 
+          title="Puntuación Actual"
+          value="92%"
+          subtitle="↑ +4% vs última evaluación"
+          icon={FiTrendingUp}
+          colorScheme="teal"
+        />
+        <MetricCard 
+          title="Objetivos Cumplidos"
+          value="3/4"
+          subtitle="75% de cumplimiento"
+          icon={FiTarget}
+          colorScheme="green"
+        />
+        <MetricCard 
+          title="Feedback Positivo"
+          value="12"
+          subtitle="En los últimos 3 meses"
+          icon={FiAward}
+          colorScheme="blue"
+        />
+        <MetricCard 
+          title="Rating Promedio"
+          value="4.7/5"
+          subtitle="Basado en feedback"
+          icon={FiStar}
+          colorScheme="purple"
+        />
+      </SimpleGrid>
+
+      {/* Gráficos - Mismo layout que admin */}
+      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6} mb={8}>
+        {/* Evaluación de competencias */}
+        <Box p={6} shadow="lg" borderRadius="xl" bg="white">
+          <Heading size="lg" mb={4} fontSize="lg">Evaluación de Competencias</Heading>
+          <ResponsiveContainer width="100%" height={250}>
+            <RadarChart data={mySkills}>
+              <PolarGrid stroke="#E2E8F0" />
+              <PolarAngleAxis dataKey="skill" tick={{ fontSize: 12 }} />
+              <PolarRadiusAxis angle={90} domain={[0, 100]} />
+              <Radar name="Tu Nivel" dataKey="value" stroke="#38B2AC" fill="#38B2AC" fillOpacity={0.6} />
+              <Tooltip />
+            </RadarChart>
+          </ResponsiveContainer>
+        </Box>
+
+        {/* Progreso histórico */}
+        <Box p={6} shadow="lg" borderRadius="xl" bg="white">
+          <Heading size="lg" mb={4} fontSize="lg">Progreso Histórico</Heading>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={performanceTrend}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+              <XAxis dataKey="period" stroke="#718096" />
+              <YAxis stroke="#718096" domain={[0, 100]} />
+              <Tooltip />
+              <Line 
+                type="monotone" 
+                dataKey="score" 
+                stroke="#38B2AC" 
+                strokeWidth={3}
+                dot={{ fill: '#38B2AC', r: 5 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </Box>
+      </SimpleGrid>
+
+      {/* Tabla de objetivos - Mismo estilo que tabla de admin */}
+      <Box p={6} shadow="lg" borderRadius="xl" bg="white">
+        <Flex justify="space-between" align="center" mb={4}>
+          <Heading size="lg" fontSize="lg">Mis Objetivos de Desempeño</Heading>
+          <Button size="sm" leftIcon={<FiTarget />} colorScheme="teal" variant="outline">
+            Ver Todos
+          </Button>
         </Flex>
-
-        <Divider mb={6} />
-
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
-          <Stat>
-            <StatLabel fontSize="sm">Objetivos Cumplidos</StatLabel>
-            <StatNumber fontSize="2xl" color="green.600">3/4</StatNumber>
-            <Text fontSize="xs" color="gray.500">75% de cumplimiento</Text>
-          </Stat>
-          <Stat>
-            <StatLabel fontSize="sm">Feedback Positivo</StatLabel>
-            <StatNumber fontSize="2xl" color="blue.600">12</StatNumber>
-            <Text fontSize="xs" color="gray.500">En los últimos 3 meses</Text>
-          </Stat>
-          <Stat>
-            <StatLabel fontSize="sm">Rating Promedio</StatLabel>
-            <StatNumber fontSize="2xl" color="purple.600">4.7/5</StatNumber>
-            <Text fontSize="xs" color="gray.500">Basado en feedback</Text>
-          </Stat>
-        </SimpleGrid>
+        <VStack align="stretch" spacing={4}>
+          {myGoals.map((goal) => (
+            <Box key={goal.id} p={4} bg="gray.50" borderRadius="lg">
+              <Flex justify="space-between" align="start" mb={2}>
+                <Box flex="1">
+                  <Text fontWeight="semibold" fontSize="sm">{goal.goal}</Text>
+                  <Text fontSize="sm" color="gray.600" mt={1}>Fecha límite: {goal.deadline}</Text>
+                </Box>
+                <Badge colorScheme={goal.status === 'Completado' ? 'green' : 'blue'} fontSize="sm" px={2} py={1}>
+                  {goal.status}
+                </Badge>
+              </Flex>
+              <Flex align="center" gap={3} mt={3}>
+                <Progress 
+                  value={goal.progress} 
+                  size="sm" 
+                  colorScheme={goal.progress === 100 ? 'green' : 'blue'}
+                  flex="1"
+                  borderRadius="full"
+                />
+                <Text fontWeight="bold" fontSize="sm" color={goal.progress === 100 ? 'green.600' : 'blue.600'}>
+                  {goal.progress}%
+                </Text>
+              </Flex>
+            </Box>
+          ))}
+        </VStack>
       </Box>
-
-      {/* Tabs de secciones */}
-      <Tabs variant="enclosed" colorScheme="teal">
-        <TabList>
-          <Tab><Icon as={FiBarChart2} mr={2} />Mis Competencias</Tab>
-          <Tab><Icon as={FiTarget} mr={2} />Mis Objetivos</Tab>
-          <Tab><Icon as={FiCheckCircle} mr={2} />Feedback Recibido</Tab>
-        </TabList>
-
-        <TabPanels>
-          {/* Tab 1: Competencias */}
-          <TabPanel>
-            <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={6}>
-              <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-                <Heading size="md" mb={4}>Evaluación de Competencias</Heading>
-                <ResponsiveContainer width="100%" height={300}>
-                  <RadarChart data={mySkills}>
-                    <PolarGrid stroke="#E2E8F0" />
-                    <PolarAngleAxis dataKey="skill" tick={{ fontSize: 11 }} />
-                    <PolarRadiusAxis angle={90} domain={[0, 100]} />
-                    <Radar name="Tu Nivel" dataKey="value" stroke="#38B2AC" fill="#38B2AC" fillOpacity={0.6} />
-                    <Tooltip />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </Box>
-
-              <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-                <Heading size="md" mb={4}>Progreso Histórico</Heading>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={performanceTrend}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
-                    <XAxis dataKey="period" stroke="#718096" />
-                    <YAxis stroke="#718096" domain={[0, 100]} />
-                    <Tooltip />
-                    <Line 
-                      type="monotone" 
-                      dataKey="score" 
-                      stroke="#38B2AC" 
-                      strokeWidth={3}
-                      dot={{ fill: '#38B2AC', r: 6 }}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </Box>
-            </SimpleGrid>
-          </TabPanel>
-
-          {/* Tab 2: Objetivos */}
-          <TabPanel>
-            <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-              <Heading size="md" mb={4}>Mis Objetivos de Desempeño</Heading>
-              <VStack align="stretch" spacing={4}>
-                {myGoals.map((goal) => (
-                  <Box key={goal.id} p={4} bg="gray.50" borderRadius="lg" borderLeft="4px" borderColor={goal.status === 'Completado' ? 'green.400' : 'blue.400'}>
-                    <Flex justify="space-between" align="start" mb={2}>
-                      <Box flex="1">
-                        <Text fontWeight="semibold" fontSize="md">{goal.goal}</Text>
-                        <Text fontSize="sm" color="gray.600" mt={1}>Fecha límite: {goal.deadline}</Text>
-                      </Box>
-                      <Badge colorScheme={goal.status === 'Completado' ? 'green' : 'blue'}>
-                        {goal.status}
-                      </Badge>
-                    </Flex>
-                    <Flex align="center" gap={3} mt={3}>
-                      <Progress 
-                        value={goal.progress} 
-                        size="sm" 
-                        colorScheme={goal.progress === 100 ? 'green' : 'blue'}
-                        flex="1"
-                        borderRadius="full"
-                      />
-                      <Text fontWeight="bold" fontSize="sm" color={goal.progress === 100 ? 'green.600' : 'blue.600'}>
-                        {goal.progress}%
-                      </Text>
-                    </Flex>
-                  </Box>
-                ))}
-              </VStack>
-            </Box>
-          </TabPanel>
-
-          {/* Tab 3: Feedback */}
-          <TabPanel>
-            <Box p={6} shadow="lg" borderRadius="xl" bg="white">
-              <Heading size="md" mb={4}>Feedback Reciente</Heading>
-              <VStack align="stretch" spacing={4}>
-                {feedback.map((fb, idx) => (
-                  <Box key={idx} p={4} bg="gray.50" borderRadius="lg">
-                    <Flex justify="space-between" align="start" mb={2}>
-                      <HStack>
-                        <Avatar size="sm" name={fb.from} bg="teal.500" />
-                        <Box>
-                          <Text fontWeight="semibold" fontSize="sm">{fb.from}</Text>
-                          <Text fontSize="xs" color="gray.500">{fb.date}</Text>
-                        </Box>
-                      </HStack>
-                      <HStack>
-                        {[...Array(fb.rating)].map((_, i) => (
-                          <Icon key={i} as={FiStar} color="yellow.400" fill="yellow.400" />
-                        ))}
-                      </HStack>
-                    </Flex>
-                    <Text fontSize="sm" color="gray.700" fontStyle="italic">
-                      "{fb.comment}"
-                    </Text>
-                  </Box>
-                ))}
-              </VStack>
-            </Box>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
     </Box>
   );
 };

@@ -6,15 +6,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiLogIn, FiUserPlus } from 'react-icons/fi';
 
-// 🎨 Paleta de Colores Vino Tinto Realista
-const WINE_RED = '#800020';     // Vino tinto oscuro (principal)
-const WINE_LIGHT = "#0A192F";   // Vino más claro, usado para reflejos
-const MATRIX_DARK = "#0b0002";  // Fondo con matiz cálido (no negro puro)
-const CARD_BG = "rgba(20, 0, 5, 0.9)"; // Fondo de tarjeta con leve tinte vino
+// 🎨 Mantener los mismos colores pero añadir efecto de contorno
+const WINE_RED = '#800020';           
+const WINE_LIGHT = "#FF4444";         
+const WINE_NEON = "#FF2266";          
+const MATRIX_DARK = "#0b0002";        
+const CARD_BG = "rgba(15, 0, 3, 0.95)"; 
+const TEXT_LIGHT = "#FFFFFF";         
+const LABEL_COLOR = "#FF6B6B";        
 const FONT_SIZE = 16;
 
 
-// 🔮 Estilos para el efecto de GLITCH (actualizado al color vino tinto)
 const matrixStyles = `
     @keyframes text-glitch {
         0% { text-shadow: 0.05em 0 0 ${WINE_RED}, -0.05em -0.025em 0 ${WINE_LIGHT}; }
@@ -24,9 +26,22 @@ const matrixStyles = `
         70% { text-shadow: 0.025em 0.05em 0 ${WINE_RED}, -0.05em -0.05em 0 ${WINE_LIGHT}; }
         100% { text-shadow: 0 0 0 ${WINE_RED}, 0 0 0 ${WINE_LIGHT}; }
     }
+    
     .glitch-text {
         animation: text-glitch 5s steps(20) infinite;
         text-shadow: 0 0 5px ${WINE_RED};
+    }
+
+    .label-outline {
+        color: ${LABEL_COLOR} !important;
+        text-shadow: 
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000,
+            0 0 8px ${WINE_RED};  /* Contorno negro + brillo rojo */
+        font-weight: 900;
+        letter-spacing: 0.3px;
     }
 
     #matrix-canvas {
@@ -39,7 +54,6 @@ const matrixStyles = `
         z-index: 0;
     }
 `;
-
 export default function LoginView() {
     const navigate = useNavigate(); 
     const toast = useToast();
@@ -212,47 +226,46 @@ export default function LoginView() {
             <canvas id="matrix-canvas" ref={canvasRef}></canvas>
 
             <Box 
-                maxW={'lg'} 
-                w={'full'}
+                maxW={'500px'}  // Aumentado el ancho máximo
+                w={'90%'}       // Más ancho relativo
                 bg={CARD_BG}
                 boxShadow={isHovered ? `0 0 30px 10px ${WINE_RED}` : `0 0 10px 3px ${WINE_RED}`} 
                 border={`1px solid ${WINE_RED}`}
                 rounded={'3xl'} 
-                p={{ base: 8, md: 12 }} 
-                my={12}
+                p={{ base: 6, md: 8 }}  // Reducido el padding para menor altura
+                my={8}                   // Reducido el margen vertical
                 position="relative" 
                 zIndex={1}
                 transition="box-shadow 0.3s ease-in-out"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <VStack spacing={8} align="center"> 
+                <VStack spacing={6} align="center">  {/* Reducido el espaciado */}
                     <Heading 
-                        fontSize={'4xl'} 
+                        fontSize={'2xl'}  // Título más pequeño
                         textAlign={'center'} 
                         color={WINE_RED} 
-                        mb={2}
+                        mb={1}           // Menos margen inferior
                         className="glitch-text"
                         fontFamily="monospace" 
                     >
-                        // SISTEMA DE GESTIÓN EMPRESARIAL SANTRIX //
+                         SISTEMA DE GESTIÓN EMPRESARIAL SANTRIX 
                     </Heading>
-                    <Text fontSize={'lg'} color={WINE_RED} mb={4} textAlign="center">
+                    <Text fontSize={'sm'} color={WINE_RED} mb={2} textAlign="center">  {/* Texto más pequeño */}
                         Bienvenido a Santrix. Ingresa tus credenciales para continuar.
                     </Text>
                     
                     <form onSubmit={handleSubmit} style={{ width: '100%' }}>
-                        <VStack spacing={6}> 
+                        <VStack spacing={4}>  {/* Reducido el espaciado entre campos */}
                             <FormControl id="email" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
+                                <FormLabel fontSize="sm" fontWeight="bold" color={WINE_RED}>  {/* Label más pequeño */}
                                     Usuario (Correo Electrónico)
                                 </FormLabel>
                                 <Input 
                                     type="email" 
-                                    placeholder="ejemplo@santrix.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)} 
-                                    size="lg"
+                                    size="md"  // Input más pequeño
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)" 
                                     color={WINE_RED} 
@@ -262,14 +275,14 @@ export default function LoginView() {
                             </FormControl>
                             
                             <FormControl id="role" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
+                                <FormLabel fontSize="sm" fontWeight="bold" color={WINE_RED}>  {/* Label más pequeño */}
                                     Identidad (Selecciona tu Rol)
                                 </FormLabel>
                                 <Select 
                                     placeholder="Elige tu rol..." 
                                     value={role} 
                                     onChange={(e) => setRole(e.target.value)}
-                                    size="lg"
+                                    size="md"  // Select más pequeño
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)"
                                     color={WINE_RED}
@@ -277,24 +290,23 @@ export default function LoginView() {
                                     _focus={{ borderColor: WINE_LIGHT, boxShadow: `0 0 8px ${WINE_LIGHT}` }}
                                 >
                                     <option value="admin" style={{ background: CARD_BG, color: WINE_RED }}>
-                                        Administrador (Key: 12345)
+                                        Administrador 
                                     </option>
                                     <option value="practitioner" style={{ background: CARD_BG, color: WINE_RED }}>
-                                        Practitioner (Key: 12345)
+                                        Practitioner 
                                     </option>
                                 </Select>
                             </FormControl>
                             
                             <FormControl id="password" isRequired>
-                                <FormLabel fontSize="md" fontWeight="bold" color={WINE_RED}>
+                                <FormLabel fontSize="sm" fontWeight="bold" color={WINE_RED}>  {/* Label más pequeño */}
                                     Contraseña (Clave de Acceso)
                                 </FormLabel>
                                 <Input 
-                                    type="password" 
-                                    placeholder="12345"
+                                    type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)} 
-                                    size="lg"
+                                    size="md"  // Input más pequeño
                                     borderRadius="xl"
                                     bg="rgba(0, 0, 0, 0.5)"
                                     color={WINE_RED}
@@ -307,9 +319,9 @@ export default function LoginView() {
                                 type="submit"
                                 bg={WINE_RED}
                                 color="white" 
-                                size="lg"
+                                size="md"  // Botón más pequeño
                                 w="full"
-                                mt={6}
+                                mt={4}    // Menos margen superior
                                 leftIcon={<FiLogIn />}
                                 isLoading={isLoading}
                                 loadingText="Cargando..."
@@ -341,6 +353,7 @@ export default function LoginView() {
                         _hover={{ textDecoration: 'underline', color: WINE_LIGHT }}
                         borderRadius="xl"
                         fontWeight="semibold"
+                        size="sm"  // Botón más pequeño
                     >
                         Registro Simulado (Acceso Temporal)
                     </Button>

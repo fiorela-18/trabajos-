@@ -4,8 +4,10 @@ import {
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { 
-  FiHome, FiUsers, FiBriefcase, FiZap, FiTarget, FiCalendar, FiLogOut, FiClock
+  FiHome, FiUsers, FiBriefcase, FiZap, FiTarget, FiCalendar, FiLogOut, FiClock,
+  FiUser, FiUserCheck
 } from 'react-icons/fi';
+import { FiDollarSign } from 'react-icons/fi';
 
 // Nueva paleta de colores
 const AZUL_MARINO = "#0A192F";
@@ -65,13 +67,20 @@ export default function Sidebar() {
           
           {isAdmin && (
             <>
+              {/* NUEVA SECCIÓN: GESTIÓN DE TRABAJADORES */}
+              <Text fontSize="xs" fontWeight="bold" color={GRIS} mt={4} mb={1} ml={3}>
+                GESTIÓN DE TRABAJADORES
+              </Text>
+              <LinkItem icon={FiUser} to="/empleados">Empleados</LinkItem>
+              <LinkItem icon={FiUserCheck} to="/practitioners">Practicantes</LinkItem>
+
+              {/* SECCIÓN ORIGINAL: TALENTO HUMANO */}
               <Text fontSize="xs" fontWeight="bold" color={GRIS} mt={4} mb={1} ml={3}>
                 TALENTO HUMANO (ADMIN)
               </Text>
-              <LinkItem icon={FiUsers} to="/empleados">Empleados</LinkItem>
-              <LinkItem icon={FiZap} to="/practitioners">Practicantes</LinkItem>
               <LinkItem icon={FiCalendar} to="/vacaciones">Vacaciones</LinkItem>
               <LinkItem icon={FiClock} to="/horario">Gestión de Horarios</LinkItem>
+              <LinkItem icon={FiDollarSign} to="/finanzas">Finanzas</LinkItem>
             </>
           )}
 

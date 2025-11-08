@@ -24,6 +24,7 @@ import TrainingView from './modules/Training/views/TrainingView';
 // MÓDULOS NUEVOS
 import HorarioView from './modules/Horario/HorarioView';
 import EventsView from './modules/Events/EventsView';
+import FinanceView from './modules/Finance/views/FinanceView';
 
 
 /**
@@ -80,6 +81,9 @@ export default function App() {
       {/* MÓDULOS NUEVOS: HORARIO Y EVENTOS */}
       <Route path="/horario" element={<ProtectedLayout><HorarioView /></ProtectedLayout>} />
       <Route path="/eventos" element={<ProtectedLayout><EventsView /></ProtectedLayout>} />
+      <Route path="/finanzas" element={<ProtectedLayout><FinanceView /></ProtectedLayout>} />
+
+      
 
       {/* 404 */}
       <Route path="*" element={<ProtectedLayout><NotFound /></ProtectedLayout>} />
